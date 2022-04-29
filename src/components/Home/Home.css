@@ -2,19 +2,19 @@
     background-image: url('../../images/banner-4.png');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 85vh;
+    height: 90vh;
 }
 .banner-2{
     background-image: url('../../images/banner-2.png');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 85vh;
+    height: 90vh;
 }
 .banner-3{
     background-image: url('../../images/banner-3.png');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 85vh;
+    height: 90vh;
 
 }
 .car-deals::after{
@@ -27,4 +27,15 @@
     left: 0;
     right: 0;
     margin: 20px auto;
+}
+.delearship{
+    background-image: url('../../images/black.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 150vh;
+    
+}
+.signature{
+    font-family: 'Lavishly Yours', cursive;
+    letter-spacing: 3px;
 }
