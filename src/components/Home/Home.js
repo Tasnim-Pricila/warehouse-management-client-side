@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import './Home.css';
 import img1 from '../../images/img1.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCaravan, faCarSide, faKey, faTaxi, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 const Home = () => {
     const settings = {
@@ -12,7 +12,7 @@ const Home = () => {
         speed: 1000,
         slidesToShow: 1,
         slidesToScroll: 1,
-        // autoplay: true,
+        autoplay: true,
     };
 
     return (
@@ -58,7 +58,7 @@ const Home = () => {
                             <span className='text-slate-500 pl-2'>Vendor:</span> Tasnim Tanzim
                         </p>
                         <p className='text-slate-600 mt-4'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, omnis.</p>
-                        
+
                         <div className='flex justify-between mt-2'>
                             <p className='text-2xl italic text-[#09a0f7] font-semibold'>$5,500</p>
                             <p>Quantity: <span className='text-[#09a0f7]'>10</span></p>
@@ -69,12 +69,45 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className='mt-12'>
+            <section className='bg-[#E5EAED]'>
                 <div className='text-center'>
-                    <p className='text-3xl'>
-                        Featured Car Deals
+                    <p className='text-3xl pt-8'>
+                        What are you looking for?
                     </p>
                     <p className='text-base mt-4 text-slate-500 car-deals'>Best Car Deals</p>
+                </div>
+                <div className='flex px-20 gap-12 text-center mt-8'>
+                    <div className='p-12 border-r-[1px]'>
+                       <div>
+                            <p className='bg-orange-300 rounded-full w-[50px] h-[45px] text-center font-[900] p-2 text-white text-2xl relative left-[55%]
+                            '>$</p>
+                            <FontAwesomeIcon icon={faCarSide} className='fa-3x '></FontAwesomeIcon>
+                            
+                        </div>
+                        <p className='my-4'>Car Sale</p>
+                        <p className='text-[#74787B]'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, unde!</p>
+                    </div>
+                    <div className='p-12 border-r-[1px]'>
+                       <div>
+                            <p className='bg-amber-500 rounded-full w-[50px] h-[45px] text-center font-[900] p-2 text-white text-2xl relative left-[55%]
+                            '><FontAwesomeIcon icon={faKey}></FontAwesomeIcon></p>
+                            <FontAwesomeIcon icon={faCaravan} className='fa-3x '></FontAwesomeIcon>
+                            
+                        </div>
+                        <p className='my-4'>Car Buy</p>
+                        <p className='text-[#74787B]'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, unde!</p>
+                    </div>
+                    <div className='p-12'>
+                       <div>
+                            <p className='bg-emerald-500 rounded-full w-[50px] h-[45px] text-center font-[900] p-2 text-white text-2xl relative left-[55%]
+                            '>R</p>
+                            <FontAwesomeIcon icon={faTaxi} className='fa-3x '></FontAwesomeIcon>
+                            
+                        </div>
+                        <p className='my-4'>Car Rent</p>
+                        <p className='text-[#74787B]'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, unde!</p>
+                    </div>
+
                 </div>
             </section>
         </>
