@@ -63,7 +63,7 @@ const Footer = () => {
                     <p className='italic mt-4'>Don't worry! We don't spam</p>
                 </div>
             </div>
-            <div className='flex justify-between items-center bg-[#202424] px-20 py-12 text-[#7a8395]'>
+            <div className='flex justify-between items-center bg-[#202424] px-20 py-8 text-[#7a8395] border-t-[1px] border-gray-600'>
                 <p>&copy; {year} Vinatge Exotics Made with <span className='text-orange-600 px-2'> &#10084;</span>	 by <span className='text-white pl-2'>Pricila</span> </p>
                 <div className='flex gap-6 items-center'>
                     <p>Follow Us On</p>

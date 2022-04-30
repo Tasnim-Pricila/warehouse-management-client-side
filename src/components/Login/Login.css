@@ -1,0 +1,11 @@
+.login-background{
+    background-image: url('../../images/103850010.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 95vh;
+    background-blend-mode: overlay;
+    background-color: rgba(0, 0, 0, 0.645);
+}
+input{
+    background-color: rgba(221, 221, 221, 0.221); 
+}

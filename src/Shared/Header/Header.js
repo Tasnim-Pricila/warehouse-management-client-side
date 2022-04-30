@@ -1,14 +1,17 @@
-import { faHamburger, faUser, faX } from '@fortawesome/free-solid-svg-icons';
+import { faHamburger, faSignOut, faUser, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, NavLink } from 'react-router-dom';
+import auth from '../../firebase.init';
 
 const Header = () => {
     const [menuIcon, setMenuIcon] = useState(false);
-    
+    const [user, loading, error] = useAuthState(auth);
     return (
         <>
-            <div className='flex justify-between px-12 py-4 bg-[#1B1E1E] text-white sticky top-0 z-50'>
+            <div className='flex justify-between items-center px-12 py-4 bg-[#1B1E1E] text-white sticky top-0 z-50'>
                 <div>
                     <Link to= '/home' className='uppercase font-semibold'>Vintage Exotic Cars</Link>
                 </div>
@@ -24,9 +27,17 @@ const Header = () => {
                     <NavLink to='/'> Contact </NavLink>
                     
                 </div>
+                {!user && 
                 <NavLink to='/login' className={'uppercase'}>
                         <FontAwesomeIcon icon={faUser} className='pr-2'></FontAwesomeIcon> Login 
                     </NavLink>
+}
+                {user && 
+                <button className='uppercase border border-orange-400 rounded-lg py-1 px-4'
+                onClick={() => signOut(auth)}>
+                         Logout <FontAwesomeIcon icon={faSignOut} className='pl-2'></FontAwesomeIcon>
+                    </button>
+}
             </div>
         </>
     );
