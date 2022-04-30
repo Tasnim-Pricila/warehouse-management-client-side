@@ -23,13 +23,13 @@ const Signup = () => {
     const { email, password } = userInfo;
 
     const [
-        createUserWithEmailAndPassword,
-        user,
-        loading,
-        error,
-      ] = useCreateUserWithEmailAndPassword(auth);
+        createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
 
-
+      const handleSignup = async () => {
+        
+        await createUserWithEmailAndPassword(email, password);
+    
+      }
     return (
         <>
             <div className='login-background flex items-center justify-center text-white'>
@@ -116,7 +116,7 @@ const Signup = () => {
 
                         {/* Submit Button  */}
                         <input type="submit" className='block border-gray-300 w-full mb-4 pl-4 py-2 cursor-pointer bg-orange-400 font-semibold tracking-wider
-                        rounded-full outline-none mt-6' onClick={()=> createUserWithEmailAndPassword(email, password)} />
+                        rounded-full outline-none mt-6' onClick={handleSignup} />
                     </form>
 
                     <div className='text-center mt-6 tracking-wider'>

@@ -1,9 +1,10 @@
 import React from 'react';
 import Slider from 'react-slick';
 import './Home.css';
-import img1 from '../../images/img1.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaravan, faCarSide, faKey, faTaxi, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCaravan, faCarSide, faKey, faTaxi } from '@fortawesome/free-solid-svg-icons';
+import useCars from '../../CustomHook/useCars';
+import Cars from '../Cars/Cars';
 
 const Home = () => {
     const settings = {
@@ -14,6 +15,7 @@ const Home = () => {
         slidesToScroll: 1,
         autoplay: true,
     };
+    const [cars] = useCars('http://localhost:5000/cars');
 
     return (
         <>
@@ -91,22 +93,15 @@ const Home = () => {
                     <p className='text-base mt-4 text-slate-500 car-deals'>Best Car Deals</p>
                 </div>
                 <div className='grid grid-cols-3 gap-8 mt-16 px-12'>
-                    <div className='border p-8 rounded-3xl'>
-                        <img src={img1} alt="" className='border rounded-3xl h-1/2 mx-auto' />
-                        <p className='text-2xl mt-4'>Porsche</p>
-                        <p className=' mt-2'>
-                            <FontAwesomeIcon icon={faUserCircle} className='text-slate-500'></FontAwesomeIcon>
-                            <span className='text-slate-500 pl-2'>Vendor:</span> Tasnim Tanzim
-                        </p>
-                        <p className='text-slate-600 mt-4'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, omnis.</p>
+                    
+                    {
+                        cars.map(car => 
+                            <Cars key={car._id}
+                                car = {car}>
 
-                        <div className='flex justify-between mt-2'>
-                            <p className='text-2xl italic text-[#09a0f7] font-semibold'>$5,500</p>
-                            <p>Quantity: <span className='text-[#09a0f7]'>10</span></p>
-                        </div>
-
-                        <p className='mt-4 py-2 border-4 border-amber-400 text-center'> Manage</p>
-                    </div>
+                            </Cars>
+                        )
+                    }
                 </div>
             </section>
 
