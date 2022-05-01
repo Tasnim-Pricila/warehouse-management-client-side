@@ -3,9 +3,26 @@ import useCars from '../../CustomHook/useCars';
 import './ManageInventory.css';
 
 const ManageInventory = () => {
-    const [cars] = useCars('http://localhost:5000/cars');
+    const [cars, setCars] = useCars('http://localhost:5000/cars');
     console.log(cars)
+    const handleDelete = (id) => {
+        const proceed = window.confirm("Are you sure you want to delete?")
+        if(proceed){
+            console.log("Deleting User with Id", id);
+        }
+        fetch(`http://localhost:5000/cars/${id}`, {
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.deletedCount > 0){
+                console.log('deleetd');
+                const remainingCars = cars.filter(car => car._id !== id);
+                setCars(remainingCars);
 
+            }
+        })     
+    }
     return (
         <>
             <div>
@@ -32,7 +49,7 @@ const ManageInventory = () => {
                                         <p className='text-slate-800 py-2 mt-4 px-2 bg-slate-300 rounded-lg font-semibold'>Quantity: {car.quantity}</p>
 
                                         <button className='border-4 py-2 border-amber-400 text-center cursor-pointer w-1/6 font-semibold tracking-wider'
-                                        > Delete</button>
+                                        onClick={() => handleDelete(car._id)}> Delete</button>
                                     </div>
 
                                 </div>
