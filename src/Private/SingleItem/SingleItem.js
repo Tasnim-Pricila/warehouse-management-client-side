@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import useCars from '../../CustomHook/useCars';
 
@@ -89,15 +89,17 @@ const SingleItem = () => {
                     
                 </div>
             </div>
-            <hr />
-            <div className='mx-auto w-1/4 mt-12'>
-                <p className='text-center text-2xl my-4 text-blue-600'>Restock Items</p>
+            
+            <div className='mx-auto w-1/4 mt-12 mb-4'>
+                <p className='text-center text-2xl my-4 text-blue-600'>Restock Item</p>
                 <form onSubmit={handleIncrease} className='flex flex-col'>
                     <input type="number" name="quantity" id="" className='border-2 rounded py-1 bg-slate-100 pl-4 border-gray-800' placeholder='How many car you want to restock?' required/>
                     <input type="submit" value="Increase Quantity" className='border-2 my-4 py-1 cursor-pointer border-orange-400' />
                 </form>
             </div>
+            <hr />
         </div>
+        
     );
 };
 

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaravan, faCarSide, faKey, faTaxi } from '@fortawesome/free-solid-svg-icons';
 import useCars from '../../CustomHook/useCars';
 import Cars from '../Cars/Cars';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const settings = {
@@ -103,6 +104,12 @@ const Home = () => {
                         )
                     }
                 </div>
+                <div className='flex justify-center'>
+                    <Link to='/manageInventory'>
+                <button className='my-4 py-2 border-4 border-blue-400 text-center cursor-pointer rounded-lg px-4'> Manage Inventories</button>
+                </Link>
+                </div>
+                
             </section>
 
             {/* Excellent Dealership  */}
