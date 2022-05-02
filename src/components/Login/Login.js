@@ -35,10 +35,10 @@ const Login = () => {
                         <p className='mt-4 mb-12 text-slate-500'>Welcome back! Please enter your username
                             and password to login</p>
                     </div>
-                    <form onSubmit={handleSubmit(onSubmit)} className=' mx-auto'>
-                        <div className='relative'>
+                    <form onSubmit={handleSubmit(onSubmit)} className=' mx-auto '>
+                        <div className='relative '>
                             <input placeholder='Email' type='email' {...register("email", { required: true, pattern: /\S+@\S+\.\S+/ })}
-                                className=' block border-gray-300 w-full pl-10 py-2  
+                                className=' login block border-gray-300 w-full pl-10 py-2  
                             rounded-full outline-none'/>
                             <FontAwesomeIcon icon={faAt} className='absolute top-3 left-4 text-slate-400'></FontAwesomeIcon>
                         </div>
@@ -49,12 +49,12 @@ const Login = () => {
                         <div className='relative'>
                             { eye ?
                                 <input placeholder='Password' type='password' {...register("password", { required: true, pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-]).{8,}/, minLength: 8 })}
-                                    className=' block border-gray-300 w-full pl-10 py-2 
+                                    className='login block border-gray-300 w-full pl-10 py-2 
                             rounded-full outline-none mt-6'/>
                                 :
 
                                 <input placeholder='Password' type='text' {...register("password", { required: true, pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-]).{8,}/, minLength: 8 })}
-                                    className=' block border-gray-300 w-full pl-10 py-2 
+                                    className='login block border-gray-300 w-full pl-10 py-2 
                             rounded-full outline-none mt-6'/>
                             }
                             <FontAwesomeIcon icon={faLock} className='absolute top-3 left-4 text-slate-400'></FontAwesomeIcon>

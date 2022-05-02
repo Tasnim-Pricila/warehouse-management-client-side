@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useCars from '../../CustomHook/useCars';
 import './ManageInventory.css';
 
@@ -25,11 +26,21 @@ const ManageInventory = () => {
     }
     return (
         <>
-            <div>
-                <p className='text-3xl text-center my-12'> Manage Inventories</p>
+            <div className='px-12'>
+                <div className='flex justify-between my-12'>
+                    <p className='text-3xl text-center'> Manage Inventories</p>
+                    <div>
+                        <Link to='/addItems'>
+                            <button className='border-4 py-2 px-4 border-blue-400 text-center cursor-pointer font-semibold tracking-wider hover:bg-blue-400 hover:text-white hover:duration-500'> Add Cars </button>
+                        </Link>
+
+                    </div>
+
+                </div>
+
                 {
                     cars.map(car =>
-                        <div key={car._id} className='px-12'>
+                        <div key={car._id}>
                             <div className='grid grid-cols-3 gap-8'>
                                 <div>
                                     <img src={car.img} alt="" className='w-[450px]' />

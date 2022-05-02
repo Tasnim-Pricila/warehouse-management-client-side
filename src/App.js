@@ -3,6 +3,7 @@ import './App.css';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
+import AddItems from './Private/AddItems/AddItems';
 import ManageInventory from './Private/ManageInventory/ManageInventory';
 import SingleItem from './Private/SingleItem/SingleItem';
 import Footer from './Shared/Footer/Footer';
@@ -19,6 +20,7 @@ function App() {
             <Route path='/signup' element={<Signup/>}> </Route>
             <Route path='/inventory/:id' element={<SingleItem/>}> </Route>
             <Route path='/manageInventory' element={<ManageInventory/>}> </Route>
+            <Route path='/addItems' element={<AddItems/>}> </Route>
         </Routes>
         <Footer></Footer>
     </div>
