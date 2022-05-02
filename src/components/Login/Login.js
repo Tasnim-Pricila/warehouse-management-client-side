@@ -1,34 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Login.css';
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAt, faEye, faEyeSlash, faLock } from '@fortawesome/free-solid-svg-icons';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import {useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 
 const Login = () => {
+   
+    // Email & Password Login 
+    const [signInWithEmailAndPassword, loginUser, loginLoading, loginError] = useSignInWithEmailAndPassword(auth);
     
+     // React Hook Form 
+     const { register, handleSubmit, formState: { errors } } = useForm();
+     const onSubmit = data => {
+         const userInfo = data;
+         signInWithEmailAndPassword(userInfo.email, userInfo.password);        
+     }
+
     // For PAssword hide and show 
     const [eye, setEye] = useState(true);
-
-    // User Info 
-    const [userInfo, setUserInfo] = useState({});
-
-    // React Hook Form 
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => setUserInfo(data);
-    console.log(userInfo);
-    const {email, password} = userInfo;
-
-    // Email & Password Login 
-    const [signInWithEmailAndPassword, emailUser, emailLoading, emailError] = useSignInWithEmailAndPassword(auth);
-    // console.log(emailUser);
 
     return (
         <>
             <div className='login-background flex items-center justify-center text-white'>
+                {/* <p>{emailUser?.user?.email}</p> */}
                 <div className='w-1/4'>
                     <div className='text-center'>
                         <p className='text-4xl uppercase text-orange-40'>Log In</p>
@@ -72,7 +70,7 @@ const Login = () => {
                         </small>
                         {/* Submit Button  */}
                         <input type="submit" className='block border-gray-300 w-full mb-4 pl-4 py-2 cursor-pointer bg-orange-400 font-semibold tracking-wider
-                        rounded-full outline-none mt-6' onClick={() => signInWithEmailAndPassword(email, password)}/>
+                        rounded-full outline-none mt-6'/>
                     </form>
                     <p className='text-white text-right text-sm hover:underline cursor-pointer'>Forgot Password?</p>
                     <div className='text-center mt-6 tracking-wider'>

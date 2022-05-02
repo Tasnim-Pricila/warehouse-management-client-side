@@ -8,14 +8,11 @@ const MyItems = () => {
 
     const [user, loading, error] = useAuthState(auth);
     const email = user?.email;
-    console.log(email);
 
-    // const [cars,setCars] = useCars(`http://localhost:5000/cars?email=${email}`);
     const [cars, setCars] = useState([]);
 
     useEffect(() => {
         const url = `http://localhost:5000/cars?email=${email}`
-        console.log(url);
         fetch(url)
             .then(res => res.json())
             .then(data => setCars(data));
@@ -40,11 +37,7 @@ const MyItems = () => {
                 })
         }
     }
-    const myStyle = {
-        td: {
-            border: "1px solid black",
-        }
-    }
+   
     return (
         <>
             <div className='px-12'>

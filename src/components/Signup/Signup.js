@@ -1,6 +1,6 @@
 import { faAt, faEye, faEyeSlash, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
@@ -12,24 +12,17 @@ const Signup = () => {
     // For PAssword hide and show 
     const [eye, setEye] = useState(true);
 
-    // User Info 
-    const [userInfo, setUserInfo] = useState({});
+    // Create User 
+    const [createUserWithEmailAndPassword, emailUser, emailLoading, emailError] = useCreateUserWithEmailAndPassword(auth);
 
     // React Hook Form 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => setUserInfo(data);
-    console.log(userInfo);
-
-    const { email, password } = userInfo;
-
-    const [
-        createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
-
-      const handleSignup = async () => {
-        
-        await createUserWithEmailAndPassword(email, password);
-    
-      }
+    const onSubmit = data => {
+        const userInfo = data;
+        // console.log(userInfo);
+        createUserWithEmailAndPassword(userInfo.email, userInfo.password);
+    }
+   
     return (
         <>
             <div className='login-background flex items-center justify-center text-white'>
@@ -116,7 +109,7 @@ const Signup = () => {
 
                         {/* Submit Button  */}
                         <input type="submit" className='block border-gray-300 w-full mb-4 pl-4 py-2 cursor-pointer bg-orange-400 font-semibold tracking-wider
-                        rounded-full outline-none mt-6' onClick={handleSignup} />
+                        rounded-full outline-none mt-6' />
                     </form>
 
                     <div className='text-center mt-6 tracking-wider'>
