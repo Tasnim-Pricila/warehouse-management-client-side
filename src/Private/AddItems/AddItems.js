@@ -4,8 +4,21 @@ import { useForm } from 'react-hook-form';
 const AddItems = () => {
     // React Hook Form 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
-    // console.log(userInfo);
+    const onSubmit = data => {
+        console.log(data);
+        fetch('http://localhost:5000/cars', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+        })
+    
+    }
 
     return (
         <>
@@ -34,7 +47,7 @@ const AddItems = () => {
                     <input placeholder='Your Email' type='email' {...register("email", { required: true, })} className=' block border-2 border-blue-400 border- w-full 
                         pl-2 py-2 rounded-lg outline-none mb-4 text-slate-600'/>
 
-                    <input placeholder='Image-Url' type='text' {...register("image", { required: true, })} className=' block border-2 border-blue-400 border- w-full 
+                    <input placeholder='Image-Url' type='text' {...register("img", { required: true, })} className=' block border-2 border-blue-400 border- w-full 
                         pl-2 py-2 rounded-lg outline-none mb-4 text-slate-600'/>
 
                     {/* Submit Button  */}
