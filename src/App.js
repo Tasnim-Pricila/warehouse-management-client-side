@@ -2,9 +2,11 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
+import NotFound from './components/NotFound/NotFound';
 import Signup from './components/Signup/Signup';
 import AddItems from './Private/AddItems/AddItems';
 import ManageInventory from './Private/ManageInventory/ManageInventory';
+import MyItems from './Private/MyItems/MyItems';
 import SingleItem from './Private/SingleItem/SingleItem';
 import Footer from './Shared/Footer/Footer';
 import Header from './Shared/Header/Header';
@@ -21,6 +23,8 @@ function App() {
             <Route path='/inventory/:id' element={<SingleItem/>}> </Route>
             <Route path='/manageInventory' element={<ManageInventory/>}> </Route>
             <Route path='/addItems' element={<AddItems/>}> </Route>
+            <Route path='/myItems' element={<MyItems/>}> </Route>
+            <Route path='*' element={<NotFound/>}> </Route>
         </Routes>
         <Footer></Footer>
     </div>

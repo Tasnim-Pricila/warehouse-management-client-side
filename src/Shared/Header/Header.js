@@ -18,11 +18,12 @@ const Header = () => {
                 <div onClick={() => setMenuIcon(!menuIcon)}  className='w-6 h-6 md:hidden'>
                     {menuIcon ? <FontAwesomeIcon icon={faX}></FontAwesomeIcon> : <FontAwesomeIcon icon={faHamburger} ></FontAwesomeIcon>}
                 </div>
-                <div className={`flex md:flex-row md:gap-12 flex-col md:static duration-1000 absolute bg-[#1B1E1E] md:bg-transparent text-center uppercase ${menuIcon ? 'right-0 left-0 top-14 py-4 gap-2' : 'right-0 left-0 top-[-220px]'} `}>
+                <div className={`flex md:flex-row md:gap-8 flex-col md:static duration-1000 absolute bg-[#1B1E1E] md:bg-transparent text-center uppercase ${menuIcon ? 'right-0 left-0 top-14 py-4 gap-2' : 'right-0 left-0 top-[-220px]'} `}>
                     <NavLink to='/'> Home </NavLink>
                     <NavLink to='/'> Inventory </NavLink>
                     <NavLink to='/manageInventory'> Manage Inventories </NavLink>
-                    <NavLink to='/'> Add Items </NavLink>
+                    <NavLink to='/addItems'> Add Items </NavLink>
+                    <NavLink to='/myItems'> My Items </NavLink>
                     <NavLink to='/'> Blogs </NavLink>
                     <NavLink to='/'> Contact </NavLink>
                     

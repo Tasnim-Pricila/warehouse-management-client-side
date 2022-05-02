@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import useCars from '../../CustomHook/useCars';
-import './ManageInventory.css';
+import auth from '../../firebase.init';
 
-const ManageInventory = () => {
-    
-    const [cars, setCars] = useCars('http://localhost:5000/cars');
+const MyItems = () => {
+
+    const [user, loading, error] = useAuthState(auth);
+    const email = user?.email;
+    console.log(email);
+
+    // const [cars,setCars] = useCars(`http://localhost:5000/cars?email=${email}`);
+    const [cars, setCars] = useState([]);
+
+    useEffect(() => {
+        const url = `http://localhost:5000/cars?email=${email}`
+        console.log(url);
+        fetch(url)
+            .then(res => res.json())
+            .then(data => setCars(data));
+    }, [email])
+
     const handleDelete = (id) => {
         const yes = window.confirm("Are you sure you want to delete?")
         if (yes) {
@@ -25,26 +40,23 @@ const ManageInventory = () => {
                 })
         }
     }
+    const myStyle = {
+        td: {
+            border: "1px solid black",
+        }
+    }
     return (
         <>
             <div className='px-12'>
-                <div className='flex justify-between my-12'>
-                    <p className='text-3xl text-center'> Manage Inventories</p>
-                    <div>
-                        <Link to='/addItems'>
-                            <button className='border-4 py-2 px-4 border-blue-400 text-center cursor-pointer font-semibold tracking-wider hover:bg-blue-400 hover:text-white hover:duration-500'> Add Cars </button>
-                        </Link>
-
-                    </div>
-
+                <div className=' my-12'>
+                    <p className='text-3xl text-center'> My Items</p>
                 </div>
-
                 {
                     cars.map(car =>
                         <div key={car._id}>
                             <div className='grid grid-cols-3 gap-8'>
                                 <div>
-                                    <img src={car.img} alt="" className='w-[450px]' />
+                                    <img src={car.img} alt="" className='w-[350px]' />
                                 </div>
                                 <div className='col-span-2 flex flex-col justify-center'>
                                     <div className='flex justify-between'>
@@ -77,4 +89,4 @@ const ManageInventory = () => {
     );
 };
 
-export default ManageInventory;
+export default MyItems;
