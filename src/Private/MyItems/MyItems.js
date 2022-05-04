@@ -1,17 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { get } from 'react-hook-form';
-import { Link } from 'react-router-dom';
-import useCars from '../../CustomHook/useCars';
+import Loading from '../../components/Loading/Loading';
 import auth from '../../firebase.init';
 
 const MyItems = () => {
 
-    const [user, loading, error] = useAuthState(auth);
+    const [user, userLoading, error] = useAuthState(auth);
     const email = user?.email;
-
+   
     const [cars, setCars] = useState([]);
+    let [loading, setLoading] = useState(true);
 
     useEffect(() => {
             const url = `http://localhost:5000/cars?email=${email}`
@@ -21,7 +20,10 @@ const MyItems = () => {
                 }
             })
                 .then(res => res.json())
-                .then(data => setCars(data));
+                .then(data => {
+                    setCars(data)
+                    setLoading(!loading);
+                })
         // const getCars = async () => {
         //     const url = `http://localhost:5000/cars?email=${email}`;
         //     const { data } = await axios.get(url);
@@ -29,7 +31,6 @@ const MyItems = () => {
         // }
         // getCars();
     }, [email])
-
 
     const handleDelete = (id) => {
         const yes = window.confirm("Are you sure you want to delete?")
@@ -51,7 +52,7 @@ const MyItems = () => {
         }
     }
 
-    return (
+    return loading ? ( <Loading/> ) : (
         <>
             <div className='px-12'>
                 <div className=' my-12'>

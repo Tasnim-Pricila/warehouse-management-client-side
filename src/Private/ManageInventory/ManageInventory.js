@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import useCars from '../../CustomHook/useCars';
+import Loading from '../../components/Loading/Loading';
 import './ManageInventory.css';
 
 const ManageInventory = () => {
     
-    const [cars, setCars] = useCars('http://localhost:5000/cars');
+    let [loading, setLoading] = useState(true);
+    const [cars, setCars] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/cars')
+            .then(res => res.json())
+            .then(data =>{
+                setCars(data)
+                setLoading(!loading);
+            })
+    }, [])
+
     const handleDelete = (id) => {
         const yes = window.confirm("Are you sure you want to delete?")
         if (yes) {
@@ -20,12 +31,11 @@ const ManageInventory = () => {
                         console.log('deleetd');
                         const remainingCars = cars.filter(car => car._id !== id);
                         setCars(remainingCars);
-
                     }
                 })
         }
     }
-    return (
+    return loading ? ( <Loading/> ) : (
         <>
             <div className='px-12'>
                 <div className='flex justify-between my-12'>

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import './Home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaravan, faCarSide, faKey, faTaxi } from '@fortawesome/free-solid-svg-icons';
-import useCars from '../../CustomHook/useCars';
 import Cars from '../Cars/Cars';
 import { Link } from 'react-router-dom';
+import Loading from '../Loading/Loading';
 
 const Home = () => {
     const settings = {
@@ -16,10 +16,21 @@ const Home = () => {
         slidesToScroll: 1,
         autoplay: true,
     };
-    const [cars] = useCars('http://localhost:5000/cars');
 
-    return (
-        <>
+    let [loading, setLoading] = useState(true);
+    const [cars, setCars] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/cars')
+            .then(res => res.json())
+            .then(data =>{
+                setCars(data)
+                setLoading(!loading);
+            })
+    }, [])
+
+    return loading ? ( <Loading/> ) : (
+        <>     
             {/* Banner Section  */}
             <div className='max-w-full overflow-hidden'>
                 <Slider {...settings}>
@@ -94,11 +105,11 @@ const Home = () => {
                     <p className='text-base mt-4 text-slate-500 car-deals'>Best Car Deals</p>
                 </div>
                 <div className='grid grid-cols-3 gap-8 mt-16 px-12'>
-                    
+
                     {
-                        cars.map(car => 
+                        cars.map(car =>
                             <Cars key={car._id}
-                                car = {car}>
+                                car={car}>
 
                             </Cars>
                         )
@@ -106,10 +117,10 @@ const Home = () => {
                 </div>
                 <div className='flex justify-center'>
                     <Link to='/manageInventory'>
-                <button className='my-4 py-2 border-4 border-blue-400 text-center cursor-pointer rounded-lg px-4'> Manage Inventories</button>
-                </Link>
+                        <button className='my-4 py-2 border-4 border-blue-400 text-center cursor-pointer rounded-lg px-4'> Manage Inventories</button>
+                    </Link>
                 </div>
-                
+
             </section>
 
             {/* Excellent Dealership  */}
@@ -148,8 +159,6 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-
-
         </>
     );
 };

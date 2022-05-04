@@ -9,7 +9,7 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-
 import auth from '../../firebase.init';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-
+import Loading from '../Loading/Loading';
 
 
 const Login = () => {
@@ -32,11 +32,11 @@ const Login = () => {
         //  const {tokenData} = await fetch('http://localhost:5000/login', {email});
         //  console.log(tokenData);
         //  localStorage.setItem('accessToken', tokenData.accessToken)
-        // alert('Login Successful')
     }
 
     // For PAssword hide and show 
     const [eye, setEye] = useState(true);
+     
 
     // Redirect from login page 
     const from = location.state?.from?.pathname || '/';
@@ -44,14 +44,13 @@ const Login = () => {
         if (loginUser) {   
             toast.success('Login Successful ', {
                 theme: 'colored',
-                delay: 0
             });
             navigate(from, { replace: true });
         }
     }, [loginUser])
 
-    //Reset password 
 
+    //Reset password 
     const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth);
     let userEmail;
     const handleEmailLogin = (e) => {
@@ -71,6 +70,10 @@ const Login = () => {
                 delay: 0,
             });
         }
+    }
+
+    if(loginLoading || sending){
+        return <Loading></Loading>
     }
 
     return (

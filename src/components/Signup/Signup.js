@@ -7,6 +7,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import auth from '../../firebase.init';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
+import Loading from '../Loading/Loading';
 
 const Signup = () => {
 
@@ -27,12 +28,20 @@ const Signup = () => {
         await createUserWithEmailAndPassword(userInfo.email, userInfo.password);
         
         await sendEmailVerification();
+        toast.success('Your Registration is Successful!!! ', {
+            theme: 'colored',
+            delay: 0,
+        });
         toast.success('Email Verification Sent ', {
             theme: 'colored',
             delay: 0,
         });
     }
-   
+
+    if(emailLoading || sending){
+        return <Loading></Loading>
+    }
+
     return (
         <>
             <div className='login-background flex items-center justify-center text-white'>

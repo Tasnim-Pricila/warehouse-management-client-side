@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import useCars from '../../CustomHook/useCars';
+import Loading from '../../components/Loading/Loading';
 
 const SingleItem = () => {
 
     const {id} = useParams();
-    const [cars, setCars] = useCars(`http://localhost:5000/cars/${id}`);
+    let [loading, setLoading] = useState(true);
+    const [cars, setCars] = useState([]);
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/cars/${id}`)
+            .then(res => res.json())
+            .then(data =>{
+                setCars(data)
+                setLoading(!loading);
+            })
+    }, [])
     const { name, description, price, quantity, vendor, img} = cars;
     
     
@@ -56,6 +66,7 @@ const SingleItem = () => {
             quantity: updatedQuantity,
             vendor: vendor,
             img: img
+           
         };
 
         // Update data
@@ -73,7 +84,7 @@ const SingleItem = () => {
         })
     }
     
-    return (
+    return loading ? ( <Loading/> ) : (
         <div className='my-12'>
             <div className='grid grid-cols-2 px-20 gap-12 mb-6'>
                 <div>

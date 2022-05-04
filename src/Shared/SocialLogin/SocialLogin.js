@@ -5,7 +5,6 @@ import auth from '../../firebase.init';
 import { useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-
 const SocialLogin = () => {
     const location = useLocation();
     const navigate = useNavigate();
@@ -19,6 +18,7 @@ const SocialLogin = () => {
             navigate(from, { replace: true });
         }
     }, [googleUser, facebookUser])
+
 
     return (
         <div className='text-center'>

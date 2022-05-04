@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 const AddItems = () => {
+    
     // React Hook Form 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -17,7 +18,6 @@ const AddItems = () => {
         .then(data => {
             console.log(data)
         })
-    
     }
 
     return (
