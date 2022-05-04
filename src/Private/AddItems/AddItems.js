@@ -1,11 +1,16 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import auth from '../../firebase.init';
 
 const AddItems = () => {
-    
+    const [user] = useAuthState(auth);
+    const email = user?.email;
+
     // React Hook Form 
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => {
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const onSubmit = (data) => {
         console.log(data);
         fetch('http://localhost:5000/cars', {
             method: 'POST',
@@ -18,6 +23,12 @@ const AddItems = () => {
         .then(data => {
             console.log(data)
         })
+       
+        toast.success('New Item Added Successfully', {
+            theme: 'colored',
+            delay: 0,
+        });
+        reset();
     }
 
     return (
@@ -44,7 +55,7 @@ const AddItems = () => {
                     <input placeholder='Vendor Name' type='text' {...register("vendor", { required: true, })} className=' block border-2 border-blue-400 border- w-full 
                         pl-2 py-2 rounded-lg outline-none mb-4 text-slate-600'/>
 
-                    <input placeholder='Your Email' type='email' {...register("email", { required: true, })} className=' block border-2 border-blue-400 border- w-full 
+                    <input placeholder='Your Email' type='email' value={email} {...register("email", { required: true, })} className=' block border-2 border-blue-400 border- w-full 
                         pl-2 py-2 rounded-lg outline-none mb-4 text-slate-600'/>
 
                     <input placeholder='Image-Url' type='text' {...register("img", { required: true, })} className=' block border-2 border-blue-400 border- w-full 

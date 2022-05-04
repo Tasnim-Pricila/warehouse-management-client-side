@@ -107,7 +107,7 @@ const Home = () => {
                 <div className='grid grid-cols-3 gap-8 mt-16 px-12'>
 
                     {
-                        cars.map(car =>
+                        cars.slice(0,6).map(car =>
                             <Cars key={car._id}
                                 car={car}>
 
@@ -117,7 +117,7 @@ const Home = () => {
                 </div>
                 <div className='flex justify-center'>
                     <Link to='/manageInventory'>
-                        <button className='my-4 py-2 border-4 border-blue-400 text-center cursor-pointer rounded-lg px-4'> Manage Inventories</button>
+                        <button className='my-4 py-2 border-4 border-blue-300 text-center cursor-pointer rounded-lg px-4 bg-blue-300 hover:bg-blue-400 hover:border-blue-400 hover:duration-500'> Manage Inventories</button>
                     </Link>
                 </div>
 

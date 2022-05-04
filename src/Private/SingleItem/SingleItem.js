@@ -18,7 +18,6 @@ const SingleItem = () => {
     }, [])
     const { name, description, price, quantity, vendor, img} = cars;
     
-    
     const handleDelivered = () => {
         let updatedQuantity ;
         if(quantity >= 1){

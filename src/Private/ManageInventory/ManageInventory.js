@@ -1,3 +1,5 @@
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Loading from '../../components/Loading/Loading';
@@ -63,15 +65,16 @@ const ManageInventory = () => {
                                             <p className='text-sm'>Vendor: {car.vendor}</p>
                                         </div>
                                         <div>
-                                            <p className='text-2xl bg-orange-400 px-4 py-4 italic price'>${car.price}</p>
+                                            <p className='text-2xl bg-orange-400 px-4 py-4 italic price font-bold'>${car.price}</p>
                                         </div>
                                     </div>
                                     <p className='w-1/2 text-slate-600'>{car.description}</p>
                                     <div className='flex justify-between items-center'>
                                         <p className='text-slate-800 py-2 mt-4 px-2 bg-slate-300 rounded-lg font-semibold'>Quantity: {car.quantity}</p>
 
-                                        <button className='border-4 py-2 border-amber-400 text-center cursor-pointer w-1/6 font-semibold tracking-wider'
-                                            onClick={() => handleDelete(car._id)}> Delete</button>
+                                        <button className='border-4 py-2 border-amber-400 text-center cursor-pointer w-1/6 font-semibold tracking-wider hover:bg-amber-400 hover:duration-500'
+                                            onClick={() => handleDelete(car._id)}> Delete 
+                                            <FontAwesomeIcon icon={faTrashAlt} className='pl-2 '></FontAwesomeIcon></button>
                                     </div>
 
                                 </div>

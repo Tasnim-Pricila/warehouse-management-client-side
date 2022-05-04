@@ -1,3 +1,5 @@
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -6,7 +8,7 @@ import auth from '../../firebase.init';
 
 const MyItems = () => {
 
-    const [user, userLoading, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const email = user?.email;
    
     const [cars, setCars] = useState([]);
@@ -79,8 +81,9 @@ const MyItems = () => {
                                     <div className='flex justify-between items-center'>
                                         <p className='text-slate-800 py-2 mt-4 px-2 bg-slate-300 rounded-lg font-semibold'>Quantity: {car.quantity}</p>
 
-                                        <button className='border-4 py-2 border-amber-400 text-center cursor-pointer w-1/6 font-semibold tracking-wider'
-                                            onClick={() => handleDelete(car._id)}> Delete</button>
+                                        <button className='border-4 py-2 border-amber-400 text-center cursor-pointer w-1/6 font-semibold tracking-wider hover:bg-amber-400 hover:duration-500'
+                                            onClick={() => handleDelete(car._id)}> Delete
+                                             <FontAwesomeIcon icon={faTrashAlt} className='pl-2 '></FontAwesomeIcon></button>
                                     </div>
 
                                 </div>

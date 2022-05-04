@@ -8,7 +8,7 @@ import auth from '../../firebase.init';
 
 const Header = () => {
     const [menuIcon, setMenuIcon] = useState(false);
-    const [user, loading, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     return (
         <>
             <div className='flex justify-between items-center px-12 py-4 bg-[#1B1E1E] text-white sticky top-0 z-50'>
@@ -21,11 +21,16 @@ const Header = () => {
                 <div className={`flex md:flex-row md:gap-8 flex-col md:static duration-1000 absolute bg-[#1B1E1E] md:bg-transparent text-center uppercase ${menuIcon ? 'right-0 left-0 top-14 py-4 gap-2' : 'right-0 left-0 top-[-220px]'} `}>
                     <NavLink to='/'> Home </NavLink>
                     <NavLink to='/'> Inventory </NavLink>
-                    <NavLink to='/manageInventory'> Manage Inventories </NavLink>
-                    <NavLink to='/addItems'> Add Items </NavLink>
-                    <NavLink to='/myItems'> My Items </NavLink>
+                    { user &&
+                    <>
+                        <NavLink to='/manageInventory'> Manage Inventories </NavLink>
+                        <NavLink to='/addItems'> Add Items </NavLink>
+                        <NavLink to='/myItems'> My Items </NavLink>
+                    </>    
+                    }
                     <NavLink to='/'> Blogs </NavLink>
                     <NavLink to='/'> Contact </NavLink>
+                    
                     
                 </div>
                 {!user && 
