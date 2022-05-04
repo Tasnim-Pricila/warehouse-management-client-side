@@ -1,9 +1,10 @@
 import { faAt, faEye, faEyeSlash, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import React, { useEffect, useState } from 'react';
+import { useCreateUserWithEmailAndPassword, useSendEmailVerification } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 import auth from '../../firebase.init';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
@@ -15,12 +16,21 @@ const Signup = () => {
     // Create User 
     const [createUserWithEmailAndPassword, emailUser, emailLoading, emailError] = useCreateUserWithEmailAndPassword(auth);
 
+    // Send Email Verification 
+    const [sendEmailVerification, sending, error] = useSendEmailVerification(auth);
+
     // React Hook Form 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => {
+    const onSubmit = async data => {
         const userInfo = data;
         // console.log(userInfo);
-        createUserWithEmailAndPassword(userInfo.email, userInfo.password);
+        await createUserWithEmailAndPassword(userInfo.email, userInfo.password);
+        
+        await sendEmailVerification();
+        toast.success('Email Verification Sent ', {
+            theme: 'colored',
+            delay: 0,
+        });
     }
    
     return (
@@ -40,9 +50,9 @@ const Signup = () => {
                             rounded-full outline-none'/>
                             <FontAwesomeIcon icon={faUser} className='absolute top-3 left-4 text-slate-400'></FontAwesomeIcon>
                         </div>
-                        {/* <small className='text-red-500 '>
+                        <small className='text-red-500 '>
                             {errors.name?.type === 'required' && "Name is required"}
-                        </small> */}
+                        </small> 
                         {/* Email Field  */}
                         <div className='relative'>
                             <input placeholder='Email' type='email' {...register("email", { required: true, pattern: /\S+@\S+\.\S+/ })}
@@ -51,10 +61,10 @@ const Signup = () => {
                             <FontAwesomeIcon icon={faAt} className='absolute top-3 left-4 text-slate-400'></FontAwesomeIcon>
                         </div>
 
-                        {/* <small className='text-red-500 '>
+                        <small className='text-red-500 '>
                             {errors.email?.type === 'required' && "Email is required"}
                             {errors.email?.type === 'pattern' && "Email pattern is wrong"}
-                        </small> */}
+                        </small> 
 
                         {/* PAssword field  */}
                         <div className='relative'>
@@ -77,11 +87,11 @@ const Signup = () => {
                             </div>
 
                         </div>
-                        {/* <small className=' text-red-500'>
+                        <small className=' text-red-500'>
                             {errors.password?.type === 'required' && "Password is required"}
                             {errors.password?.type === 'minLength' && "Password must be 8 characters long"}
                             {errors.password?.type === 'pattern' && "Must use 1 uppercase, 1 lowercase, 1 number and 1 special character"}
-                        </small> */}
+                        </small>
 
                         {/* COnfirm PAssword field  */}
                         <div className='relative'>
@@ -116,6 +126,7 @@ const Signup = () => {
                         <p>Already Have an Account? <Link to='/login' className='text-orange-500 hover:underline'> Login </Link></p>
                     </div>
                     <SocialLogin></SocialLogin>
+                    
                 </div>
             </div>
 

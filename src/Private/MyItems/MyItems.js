@@ -1,5 +1,7 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { get } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import useCars from '../../CustomHook/useCars';
 import auth from '../../firebase.init';
@@ -12,11 +14,22 @@ const MyItems = () => {
     const [cars, setCars] = useState([]);
 
     useEffect(() => {
-        const url = `http://localhost:5000/cars?email=${email}`
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setCars(data));
+            const url = `http://localhost:5000/cars?email=${email}`
+            fetch(url,{
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => setCars(data));
+        // const getCars = async () => {
+        //     const url = `http://localhost:5000/cars?email=${email}`;
+        //     const { data } = await axios.get(url);
+        //     setCars(data);
+        // }
+        // getCars();
     }, [email])
+
 
     const handleDelete = (id) => {
         const yes = window.confirm("Are you sure you want to delete?")
@@ -37,7 +50,7 @@ const MyItems = () => {
                 })
         }
     }
-   
+
     return (
         <>
             <div className='px-12'>

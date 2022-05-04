@@ -1,14 +1,25 @@
 import { faFacebookF, faGoogle} from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useEffect } from 'react';
 import auth from '../../firebase.init';
 import { useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 const SocialLogin = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [signInWithFacebook, facebookUser, facebookLoading, facebookError] = useSignInWithFacebook(auth);
-    // console.log(googleUser);
+
+    const from = location.state?.from?.pathname || '/';
+    useEffect(() => {
+        if (googleUser || facebookUser) {
+            navigate(from, { replace: true });
+        }
+    }, [googleUser, facebookUser])
+
     return (
         <div className='text-center'>
             <div className='flex items-center gap-6'>
