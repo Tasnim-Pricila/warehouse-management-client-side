@@ -9,12 +9,15 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-
 import auth from '../../firebase.init';
 import { toast } from 'react-toastify';
 import Loading from '../Loading/Loading';
+import axios from 'axios';
+import useToken from '../../CustomHook/useToken';
 
 
 const Login = () => {
 
     const location = useLocation();
     const navigate = useNavigate();
+    
 
     // For PAssword hide and show 
     const [eye, setEye] = useState(true);
@@ -39,26 +42,11 @@ const Login = () => {
         setError({});
     }
 
+    const [token] = useToken(loginUser);
     // Redirect from login page 
     const from = location.state?.from?.pathname || '/';
     useEffect(() => {
-        if (loginUser) {
-            const url = 'http://localhost:5000/login';
-           
-                fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        email: loginUser.user.email
-                    })
-                })
-                .then(res => res.json())
-                .then(data => {
-                    localStorage.setItem('accessToken', data.accessToken);
-                    // console.log(data)
-                })
+        if (token) {
             reset();
             toast.success('Login Successful ', {
                 theme: 'colored',
@@ -66,7 +54,7 @@ const Login = () => {
             navigate(from, { replace: true });
 
         }
-    }, [loginUser])
+    }, [token])
 
 
     //Reset password 
@@ -104,10 +92,8 @@ const Login = () => {
                 case "auth/too-many-requests":
                     setError({ ...error, email: "This account has been temporarily disabled due to many failed login attempts." });
                     break;
-
                 default:
                     setError({ ...error, others: loginError.message });
-
             }
         }
     }, [loginError]);

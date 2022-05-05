@@ -5,6 +5,7 @@ import { useCreateUserWithEmailAndPassword, useSendEmailVerification } from 'rea
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import useToken from '../../CustomHook/useToken';
 import auth from '../../firebase.init';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 import Loading from '../Loading/Loading';
@@ -45,9 +46,10 @@ const Signup = () => {
         }
        
     }
+    const [token] = useToken(emailUser);
     const navigate = useNavigate();
     useEffect(() => {
-        if (emailUser) {
+        if (token) {
             toast.success('Your Registration is Successful!!! ', {
                 theme: 'colored',
                 delay: 0,
@@ -59,7 +61,7 @@ const Signup = () => {
             reset();
             navigate('/');
         }
-    }, [emailUser])
+    }, [token])
 
     // Handle Signup Error 
     useEffect(() => {

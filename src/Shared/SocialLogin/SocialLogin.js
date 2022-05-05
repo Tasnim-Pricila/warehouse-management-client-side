@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import auth from '../../firebase.init';
 import { useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
+import useToken from '../../CustomHook/useToken';
 
 const SocialLogin = () => {
     const location = useLocation();
@@ -12,12 +13,14 @@ const SocialLogin = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [signInWithFacebook, facebookUser, facebookLoading, facebookError] = useSignInWithFacebook(auth);
 
+    const [token] = useToken(googleUser || facebookUser);
+
     const from = location.state?.from?.pathname || '/';
     useEffect(() => {
-        if (googleUser || facebookUser) {
+        if (token) {
             navigate(from, { replace: true });
         }
-    }, [googleUser, facebookUser])
+    }, [token])
 
 
     return (
