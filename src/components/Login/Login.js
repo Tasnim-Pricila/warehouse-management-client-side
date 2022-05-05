@@ -33,14 +33,12 @@ const Login = () => {
     // React Hook Form 
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const onSubmit = data => {
+    const onSubmit = async data => {
         const userInfo = data;
         const { email, password } = userInfo;
         signInWithEmailAndPassword(email, password);
         //  const {tokenData} = await axios.post('http://localhost:5000/login', {email});
-        //  const {tokenData} = await fetch('http://localhost:5000/login', {email});
         //  console.log(tokenData);
-        //  localStorage.setItem('accessToken', tokenData.accessToken)
         setError({});
     }
 
@@ -48,11 +46,29 @@ const Login = () => {
     const from = location.state?.from?.pathname || '/';
     useEffect(() => {
         if (loginUser) {
+
+            const url = 'http://localhost:5000/login';
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: loginUser?.user?.email
+                })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    localStorage.setItem('accessToken', data.accessToken);
+                    console.log(data)
+                })
+
             reset();
             toast.success('Login Successful ', {
                 theme: 'colored',
             });
             navigate(from, { replace: true });
+
         }
     }, [loginUser])
 
@@ -84,18 +100,18 @@ const Login = () => {
         if (loginError) {
             switch (loginError.code) {
                 case "auth/user-not-found":
-                    setError({ ...error, email: "User Not Found" });   
+                    setError({ ...error, email: "User Not Found" });
                     break;
                 case "auth/wrong-password":
-                    setError({ ...error, password: "Wrong Password" });         
+                    setError({ ...error, password: "Wrong Password" });
                     break;
                 case "auth/too-many-requests":
-                    setError({ ...error, email: "This account has been temporarily disabled due to many failed login attempts." });                   
+                    setError({ ...error, email: "This account has been temporarily disabled due to many failed login attempts." });
                     break;
 
                 default:
                     setError({ ...error, others: loginError.message });
-                    
+
             }
         }
     }, [loginError]);
@@ -154,7 +170,7 @@ const Login = () => {
                         {/* Submit Button  */}
                         <input type="submit" className='block border-gray-300 w-full mb-4 pl-4 py-2 cursor-pointer bg-orange-400 font-semibold tracking-wider
                         rounded-full outline-none mt-6'/>
-                        
+
                     </form>
                     <p className='text-white text-right text-sm hover:underline cursor-pointer' onClick={handleForgotPassword}>Forgot Password?</p>
                     <div className='text-center mt-6 tracking-wider'>

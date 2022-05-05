@@ -1,5 +1,5 @@
-import { faFacebook, faFacebookF, faInstagram, faMailchimp, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { faAngleRight, faArrowRight, faEnvelope, faLocationDot, faPhone, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
+import {  faFacebookF, faInstagram,  faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faAngleRight, faEnvelope, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -53,7 +53,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div>
-                    <p className='text-xl text-white uppercase pb-8'>Help Center</p>
+                    <p className='text-xl text-white uppercase pb-8'>Newsletter</p>
                     <p className='mb-6'>Subscribe to our newsletter to get the latest cars discount promotions and other latest news stay updated.</p>
                     <div className='flex items-center'>
                         <input type="email" name="email" id="email" placeholder='Email Address' className='py-4 pl-4 w-64 outline-none' />

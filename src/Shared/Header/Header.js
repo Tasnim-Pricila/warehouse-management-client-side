@@ -28,8 +28,8 @@ const Header = () => {
                         <NavLink to='/myItems'> My Items </NavLink>
                     </>    
                     }
-                    <NavLink to='/'> Blogs </NavLink>
-                    <NavLink to='/'> Contact </NavLink>
+                    <NavLink to='/blogs'> Blogs </NavLink>
+                    <NavLink to='/contact'> Contact </NavLink>
                     
                     
                 </div>

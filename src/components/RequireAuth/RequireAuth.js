@@ -8,10 +8,10 @@ import Loading from '../Loading/Loading';
 
 const RequireAuth = ({ children }) => {
 
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const location = useLocation();
     
-    const [sendEmailVerification, verificationSending, verificationError] = useSendEmailVerification(auth);
+    const [sendEmailVerification, verificationSending] = useSendEmailVerification(auth);
     const handleVErification = async () => {
         await sendEmailVerification();
         toast.success('Email Verification Sent ', {

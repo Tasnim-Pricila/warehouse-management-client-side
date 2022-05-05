@@ -1,6 +1,5 @@
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Loading from '../../components/Loading/Loading';
@@ -26,12 +25,6 @@ const MyItems = () => {
                     setCars(data)
                     setLoading(!loading);
                 })
-        // const getCars = async () => {
-        //     const url = `http://localhost:5000/cars?email=${email}`;
-        //     const { data } = await axios.get(url);
-        //     setCars(data);
-        // }
-        // getCars();
     }, [email])
 
     const handleDelete = (id) => {
