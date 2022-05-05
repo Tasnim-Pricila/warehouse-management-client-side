@@ -1,31 +1,48 @@
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Loading from '../../components/Loading/Loading';
 import auth from '../../firebase.init';
 
 const MyItems = () => {
 
+    const navigate = useNavigate();
     const [user] = useAuthState(auth);
     const email = user?.email;
-   
+
     const [cars, setCars] = useState([]);
     let [loading, setLoading] = useState(true);
 
     useEffect(() => {
-            const url = `http://localhost:5000/cars?email=${email}`
-            fetch(url,{
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        const getCars = async () => {
+            const url = `http://localhost:5000/cars?email=${email}`;
+            try {
+                const { data } = await axios.get(url, {
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                    }
+                });
+                setCars(data);
+                setLoading(!loading);
+            }
+            catch (error) {
+                console.log(error.message);
+                if (error.response.status === 401 || error.response.status === 403) {
+                    signOut(auth);
+                    toast.error(error.message, {
+                        theme: 'colored',
+                    });
+                    navigate('/login');
                 }
-            })
-                .then(res => res.json())
-                .then(data => {
-                    setCars(data)
-                    setLoading(!loading);
-                })
-    }, [email])
+            }
+        }
+        getCars();
+    }, [email, user ])
 
     const handleDelete = (id) => {
         const yes = window.confirm("Are you sure you want to delete?")
@@ -47,7 +64,7 @@ const MyItems = () => {
         }
     }
 
-    return loading ? ( <Loading/> ) : (
+    return (
         <>
             <div className='px-12'>
                 <div className=' my-12'>
@@ -76,7 +93,7 @@ const MyItems = () => {
 
                                         <button className='border-4 py-2 border-amber-400 text-center cursor-pointer w-1/6 font-semibold tracking-wider hover:bg-amber-400 hover:duration-500'
                                             onClick={() => handleDelete(car._id)}> Delete
-                                             <FontAwesomeIcon icon={faTrashAlt} className='pl-2 '></FontAwesomeIcon></button>
+                                            <FontAwesomeIcon icon={faTrashAlt} className='pl-2 '></FontAwesomeIcon></button>
                                     </div>
 
                                 </div>

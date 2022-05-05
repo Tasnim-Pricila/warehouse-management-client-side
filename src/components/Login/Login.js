@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAt, faEye, faEyeSlash, faLock } from '@fortawesome/free-solid-svg-icons';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import Loading from '../Loading/Loading';
 
@@ -37,8 +36,6 @@ const Login = () => {
         const userInfo = data;
         const { email, password } = userInfo;
         signInWithEmailAndPassword(email, password);
-        //  const {tokenData} = await axios.post('http://localhost:5000/login', {email});
-        //  console.log(tokenData);
         setError({});
     }
 
@@ -46,23 +43,22 @@ const Login = () => {
     const from = location.state?.from?.pathname || '/';
     useEffect(() => {
         if (loginUser) {
-
             const url = 'http://localhost:5000/login';
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: loginUser?.user?.email
+           
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: loginUser.user.email
+                    })
                 })
-            })
                 .then(res => res.json())
                 .then(data => {
                     localStorage.setItem('accessToken', data.accessToken);
-                    console.log(data)
+                    // console.log(data)
                 })
-
             reset();
             toast.success('Login Successful ', {
                 theme: 'colored',
