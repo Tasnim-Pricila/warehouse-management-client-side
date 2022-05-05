@@ -10,7 +10,7 @@ const override = css`
 
 const Loading = () => {
     return (
-        <div className="sweet-loading h-[100vh] flex flex-col justify-center items-center gap-8">
+        <div className="sweet-loading h-[95vh] flex flex-col justify-center items-center gap-8">
             <RingLoader css={override} size={120} color={"#B51BE1"} />
             <p className='text-fuchsia-600 text-2xl'>Loading...</p>
         </div>

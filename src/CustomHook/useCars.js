@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react';
-import Loading from '../components/Loading/Loading';
+
 
 const useCars = (url) => {
     const [cars, setCars] = useState([]);
+    const [loading, setLoading] = useState(true);
     
     useEffect(() => {
         fetch(url)
             .then(res =>res.json())
             .then(data =>{
                 setCars(data)
+                setLoading(!loading);
             })
     },[])
     
-    return [cars, setCars];
+    return [cars, setCars, loading, setLoading];
 };
 
 export default useCars;

@@ -6,6 +6,7 @@ import { faCaravan, faCarSide, faKey, faTaxi } from '@fortawesome/free-solid-svg
 import Cars from '../Cars/Cars';
 import { Link } from 'react-router-dom';
 import Loading from '../Loading/Loading';
+import useCars from '../../CustomHook/useCars';
 
 const Home = () => {
     const settings = {
@@ -17,17 +18,7 @@ const Home = () => {
         autoplay: true,
     };
 
-    let [loading, setLoading] = useState(true);
-    const [cars, setCars] = useState([]);
-
-    useEffect(() => {
-        fetch('http://localhost:5000/cars')
-            .then(res => res.json())
-            .then(data =>{
-                setCars(data)
-                setLoading(!loading);
-            })
-    }, [])
+    const [cars, setCars, loading] = useCars('http://localhost:5000/cars');
 
     return loading ? ( <Loading/> ) : (
         <>     

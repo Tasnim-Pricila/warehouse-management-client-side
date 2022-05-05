@@ -1,23 +1,13 @@
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Loading from '../../components/Loading/Loading';
-import './ManageInventory.css';
+import useCars from '../../CustomHook/useCars';
 
 const ManageInventory = () => {
     
-    let [loading, setLoading] = useState(true);
-    const [cars, setCars] = useState([]);
-
-    useEffect(() => {
-        fetch('http://localhost:5000/cars')
-            .then(res => res.json())
-            .then(data =>{
-                setCars(data)
-                setLoading(!loading);
-            })
-    }, [])
+    const [cars, setCars, loading] = useCars('http://localhost:5000/cars');
 
     const handleDelete = (id) => {
         const yes = window.confirm("Are you sure you want to delete?")

@@ -9,16 +9,13 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-
 import auth from '../../firebase.init';
 import { toast } from 'react-toastify';
 import Loading from '../Loading/Loading';
-import axios from 'axios';
 import useToken from '../../CustomHook/useToken';
-
 
 const Login = () => {
 
     const location = useLocation();
     const navigate = useNavigate();
     
-
     // For PAssword hide and show 
     const [eye, setEye] = useState(true);
 
@@ -63,6 +60,7 @@ const Login = () => {
     const handleEmailLogin = (e) => {
         userEmail = e.target.value;
     }
+
     const handleForgotPassword = async () => {
         if (userEmail) {
             await sendPasswordResetEmail(userEmail);
@@ -78,8 +76,8 @@ const Login = () => {
             });
         }
     }
-    // Handle Login Error 
 
+    // Handle Login Error 
     useEffect(() => {
         if (loginError) {
             switch (loginError.code) {

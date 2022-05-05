@@ -19,11 +19,11 @@ const AddItems = () => {
             },
             body: JSON.stringify(data)
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-        })
-       
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+
         toast.success('New Item Added Successfully', {
             theme: 'colored',
             delay: 0,
@@ -41,30 +41,44 @@ const AddItems = () => {
                 <form onSubmit={handleSubmit(onSubmit)} className=' mx-auto'>
 
                     <input placeholder='Car Name' type='text' {...register("name", { required: true, })} className=' block border-2 border-blue-400 border- w-full 
-                        pl-2 py-2 rounded-lg outline-none mb-4 text-slate-600'/>
+                        pl-2 py-2 rounded-lg outline-none  text-slate-600'/>
+                    <small className='text-red-500'>
+                        {errors.name?.type === 'required' && "Name is required"}
+                    </small>
 
-                    <textarea placeholder='Description' {...register("description", { required: true, })} className=' block border-2 border-blue-400 border- w-full 
-                        pl-2 py-2 rounded-lg outline-none mb-4 text-slate-600'/>
+                    <textarea placeholder='Description' {...register("description", { required: true, })} className=' block border-2 border-blue-400 border- w-full pl-2 py-2 rounded-lg outline-none mt-4 text-slate-600' />
+                    <small className='text-red-500'>
+                        {errors.description?.type === 'required' && "Name is required"}
+                    </small>
 
                     <input placeholder='Price' type='number' {...register("price", { required: true, })} className=' block border-2 border-blue-400 border- w-full 
-                        pl-2 py-2 rounded-lg outline-none mb-4 text-slate-600'/>
+                        pl-2 py-2 rounded-lg outline-none mt-4 text-slate-600'/>
+                    <small className='text-red-500'>
+                        {errors.price?.type === 'required' && "Name is required"}
+                    </small>
 
-                    <input placeholder='Quantity' type='number' {...register("quantity", { required: true, })} className=' block border-2 border-blue-400 border- w-full 
-                        pl-2 py-2 rounded-lg outline-none mb-4 text-slate-600'/>
+                    <input placeholder='Quantity' type='number' {...register("quantity", { required: true, })} className=' block border-2 border-blue-400 border- w-full pl-2 py-2 rounded-lg outline-none mt-4 text-slate-600' />
+                    <small className='text-red-500'>
+                        {errors.quantity?.type === 'required' && "Name is required"}
+                    </small>
 
-                    <input placeholder='Vendor Name' type='text' {...register("vendor", { required: true, })} className=' block border-2 border-blue-400 border- w-full 
-                        pl-2 py-2 rounded-lg outline-none mb-4 text-slate-600'/>
+                    <input placeholder='Vendor Name' type='text' {...register("vendor", { required: true, })} className=' block border-2 border-blue-400 border- w-full pl-2 py-2 rounded-lg outline-none mt-4 text-slate-600' />
+                    <small className='text-red-500'>
+                        {errors.vendor?.type === 'required' && "Name is required"}
+                    </small>
 
-                    <input placeholder='Your Email' type='email' value={email} {...register("email", { required: true, })} className=' block border-2 border-blue-400 border- w-full 
-                        pl-2 py-2 rounded-lg outline-none mb-4 text-slate-600'/>
+                    <input placeholder='Your Email' type='email' value={email} {...register("email", { required: true, })} className=' block border-2 border-blue-400 border- w-full pl-2 py-2 rounded-lg outline-none mt-4 text-slate-600' />
 
                     <input placeholder='Image-Url' type='text' {...register("img", { required: true, })} className=' block border-2 border-blue-400 border- w-full 
-                        pl-2 py-2 rounded-lg outline-none mb-4 text-slate-600'/>
+                        pl-2 py-2 rounded-lg outline-none mt-4 text-slate-600'/>
+                    <small className='text-red-500'>
+                        {errors.img?.type === 'required' && "Name is required"}
+                    </small>
 
                     {/* Submit Button  */}
-                    <input type="submit" className='block border-gray-300 w-full mb-4 
+                    <input type="submit" className='block border-gray-300 w-full
                         pl-4 py-2 cursor-pointer bg-orange-400 font-semibold tracking-wider
-                        rounded-lg outline-none mt-6' value='Add Car'/>
+                        rounded-lg outline-none mt-6' value='Add Car' />
                 </form>
             </div>
         </>

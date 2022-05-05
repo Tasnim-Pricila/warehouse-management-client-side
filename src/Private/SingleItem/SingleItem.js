@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import Loading from '../../components/Loading/Loading';
+import useCars from '../../CustomHook/useCars';
 
 const SingleItem = () => {
 
     const {id} = useParams();
-    let [loading, setLoading] = useState(true);
-    const [cars, setCars] = useState([]);
-
-    useEffect(() => {
-        fetch(`http://localhost:5000/cars/${id}`)
-            .then(res => res.json())
-            .then(data =>{
-                setCars(data)
-                setLoading(!loading);
-            })
-    }, [])
+    
+    const [cars, setCars, loading] = useCars(`http://localhost:5000/cars/${id}`);
     const { name, description, price, quantity, vendor, img} = cars;
     
     const handleDelivered = () => {

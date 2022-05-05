@@ -64,7 +64,7 @@ const MyItems = () => {
         }
     }
 
-    return loading ? ( <Loading/> ) :(
+    return loading ? ( <Loading/> ) : (
         <>
             <div className='px-12'>
                 <div className=' my-12'>
