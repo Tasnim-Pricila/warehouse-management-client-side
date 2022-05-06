@@ -49,7 +49,7 @@ const Home = () => {
 
     const [cars, setCars, loading] = useCars('http://localhost:5000/cars');
 
-    return  (
+    return loading ? ( <Loading/> ) : (
         <>
             {/* Banner Section  */}
             <Slider {...settings} className='max-w-full overflow-hidden'>
