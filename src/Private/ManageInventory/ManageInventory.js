@@ -1,13 +1,38 @@
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Loading from '../../components/Loading/Loading';
 import useCars from '../../CustomHook/useCars';
 
 const ManageInventory = () => {
-    
-    const [cars, setCars, loading] = useCars('http://localhost:5000/cars');
+
+    const [loading, setLoading] = useState(true);
+    const [totalPage, setTotalPage] = useState(0);
+    const [totalCar, setTotalCar] = useState(0);
+    const [activePage, setActivePage] = useState(0);
+    const [limit, setLimit] = useState(5);
+    const [cars, setCars] = useState([]);
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/cars?activePage=${activePage}&limit=${limit}`)
+            .then(res => res.json())
+            .then(data => {
+                setCars(data)
+                setLoading(!loading);
+            })
+    }, [activePage, limit, loading])
+
+    useEffect(() => {
+        fetch('http://localhost:5000/totalCar')
+            .then(res => res.json())
+            .then(data => {
+                setTotalCar(data.result);
+                const totalCar = data.result;
+                const page = Math.ceil(totalCar / limit);
+                setTotalPage(page);
+            })
+    }, [limit])
 
     const handleDelete = (id) => {
         const yes = window.confirm("Are you sure you want to delete?")
@@ -27,7 +52,7 @@ const ManageInventory = () => {
                 })
         }
     }
-    return loading ? ( <Loading/> ) : (
+    return (
         <>
             <div className='px-12'>
                 <div className='flex justify-between my-12'>
@@ -52,7 +77,7 @@ const ManageInventory = () => {
                                     <div className='flex justify-between'>
                                         <div className='mb-6'>
                                             <p className='text-2xl font-semibold'>{car.name}</p>
-                                            <p className='text-sm'>Vendor: {car.vendor}</p>
+                                            <p className='text-sm text-slate-500 pt-2'>Vendor: {car.vendor}</p>
                                         </div>
                                         <div>
                                             <p className='text-2xl bg-orange-400 px-4 py-4 italic price font-bold'>${car.price}</p>
@@ -63,7 +88,7 @@ const ManageInventory = () => {
                                         <p className='text-slate-800 py-2 mt-4 px-2 bg-slate-300 rounded-lg font-semibold'>Quantity: {car.quantity}</p>
 
                                         <button className='border-4 py-2 border-amber-400 text-center cursor-pointer w-1/6 font-semibold tracking-wider hover:bg-amber-400 hover:duration-500'
-                                            onClick={() => handleDelete(car._id)}> Delete 
+                                            onClick={() => handleDelete(car._id)}> Delete
                                             <FontAwesomeIcon icon={faTrashAlt} className='pl-2 '></FontAwesomeIcon></button>
                                     </div>
 
@@ -74,7 +99,30 @@ const ManageInventory = () => {
 
                     )
                 }
+                <div className='text-center mb-8'>
+                    {
+                        [...Array(totalPage).keys()].map(num =>
+                            <button className={`border-2 border-amber-400 px-2 mr-1 bg-slate-200 font-semibold 
+                            ${activePage === num ? 'bg-amber-400' : ''}`}
+                                onClick={() => setActivePage(num)} key={num}>
+                                {num + 1}
+                            </button>)
+                    }
+                    <div className='flex items-center mt-4 justify-around w-1/2 mx-auto'>
+                        <div className='flex items-center'>
+                            <p className='pr-2'>Show: </p>
+                            <select onChange={(e) => setLimit(e.target.value)} className='border-2 px-2 py-[3px] block border-slate-500'>
 
+                                <option value="5"> 5 </option>
+                                <option value="10"> 10 </option>
+                                <option value="15"> 15 </option>
+                            </select>
+                        </div>
+
+                        <p className='text-slate-600'> <b className='text-black'>Results: </b> {activePage * limit} - {(activePage * limit) + cars.length} of {totalCar} Cars </p>
+                    </div>
+
+                </div>
             </div>
         </>
     );

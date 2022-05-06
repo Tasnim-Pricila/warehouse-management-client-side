@@ -22,7 +22,6 @@ const SocialLogin = () => {
         }
     }, [token])
 
-
     return (
         <div className='text-center'>
             <div className='flex items-center gap-6'>

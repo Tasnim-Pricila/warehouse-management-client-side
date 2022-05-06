@@ -13,7 +13,7 @@ const Header = () => {
         <>
             <div className='flex justify-between items-center px-12 py-4 bg-[#1B1E1E] text-white sticky top-0 z-50'>
                 <div>
-                    <Link to='/home' className='uppercase font-semibold'>Vintage Exotic Cars</Link>
+                    <Link to='/home' className='uppercase font-semibold text-orange-600 tracking-wider'>Vintage Exotic Cars</Link>
                 </div>
                 <div onClick={() => setMenuIcon(!menuIcon)} className='w-6 h-6 md:hidden'>
                     {menuIcon ? <FontAwesomeIcon icon={faX}></FontAwesomeIcon> : <FontAwesomeIcon icon={faHamburger} ></FontAwesomeIcon>}

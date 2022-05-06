@@ -8,7 +8,7 @@ const useCars = (url) => {
     useEffect(() => {
         fetch(url)
             .then(res =>res.json())
-            .then(data =>{
+            .then(data => {
                 setCars(data)
                 setLoading(!loading);
             })
