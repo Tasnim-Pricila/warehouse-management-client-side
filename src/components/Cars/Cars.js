@@ -10,17 +10,18 @@ const Cars = ({ car }) => {
     const navigateCar = (id) => {
         navigate(`/inventory/${id}`);
     }
+    
     return (
         <div>
-            <div className='border p-8 rounded-3xl hover:translate-y-3 hover:duration-400 shadow-md overflow-hidden'>
-                <img src={img} alt="" className='border rounded-3xl h-[300px] mx-auto hover:scale-75 hover:duration-500' />
+            <div className='border p-8 rounded-3xl shadow-md'>
+                <img src={img} alt="" className='border rounded-3xl md:h-[300px] mx-auto hover:scale-75 hover:duration-500'   />
                 <p className='text-2xl mt-4 '>{name}</p>
                 <p className=' mt-2'>
                     <FontAwesomeIcon icon={faUserCircle} className='text-slate-500'></FontAwesomeIcon>
                     <span className='text-slate-500 pl-2'>Vendor:
                     </span> {vendor}
                 </p>
-                <p className='text-slate-600 mt-4 h-[180px]'>{description > description.slice(0, 250) ? description.slice(0, 250) : description}</p>
+                <p className='text-slate-600 mt-4 md:h-[180px] h-[200px]'>{description > description.slice(0, 250) ? description.slice(0, 250) : description}</p>
 
                 <div className='flex justify-between mt-2'>
                     <p className='text-2xl italic text-[#09a0f7] font-semibold'>

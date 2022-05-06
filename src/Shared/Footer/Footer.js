@@ -1,4 +1,4 @@
-import {  faFacebookF, faInstagram,  faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faFacebookF, faInstagram, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { faAngleRight, faEnvelope, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
@@ -10,8 +10,7 @@ const Footer = () => {
     // console.log(year);
     return (
         <>
-            <div className='grid grid-cols-4 bg-[#202424] px-20 py-20 text-[#7a8395] 
-            gap-8'>
+            <div className='grid md:grid-cols-4 grid-cols-1 bg-[#202424] md:px-20 py-20 text-[#7a8395] px-8 gap-8'>
                 <div>
                     <p className='text-xl text-orange-600 uppercase '>Vintage Exotic Cars</p>
                     <p className='text-sm py-8'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste dolorum facere dolores facilis autem, numquam neque nisi et quod suscipit unde, maiores excepturi soluta iure, tempora sed molestias ad esse.</p>
@@ -31,14 +30,14 @@ const Footer = () => {
                     </div>
 
                 </div>
-                <div className='justify-self-center'>
+                <div className='md:justify-self-center'>
                     <p className='text-xl text-white uppercase pb-8'>Links</p>
                     <div className='flex flex-col gap-4'>
                         <Link to='/'>Home</Link>
-                        <Link to='/'>Home</Link>
-                        <Link to='/'>Home</Link>
-                        <Link to='/'>Home</Link>
-                        <Link to='/'>Home</Link>
+                        <Link to='/manageInventory'>Manage Inventories</Link>
+                        <Link to='/addItems'>Add Items</Link>
+                        <Link to='/blogs'>Blogs</Link>
+                        <Link to='/contact'>Contact</Link>
                     </div>
                 </div>
                 <div>
@@ -63,14 +62,17 @@ const Footer = () => {
                     <p className='italic mt-4'>Don't worry! We don't spam</p>
                 </div>
             </div>
-            <div className='flex justify-between items-center bg-[#202424] px-20 py-8 text-[#7a8395] border-t-[1px] border-gray-600'>
+            {/* Footer -2  */}
+            <div className='flex md:flex-row flex-col justify-between items-center bg-[#202424] md:px-20 px-4 py-8 text-[#7a8395] border-t-[1px] border-gray-600 text-center md:text-left'>
                 <p>&copy; {year} Vinatge Exotics Made with <span className='text-orange-600 px-2'> &#10084;</span>	 by <span className='text-white pl-2'>Pricila</span> </p>
-                <div className='flex gap-6 items-center'>
-                    <p>Follow Us On</p>
-                    <FontAwesomeIcon icon={faTwitter}></FontAwesomeIcon>
-                    <FontAwesomeIcon icon={faFacebookF}></FontAwesomeIcon>
-                    <FontAwesomeIcon icon={faInstagram}></FontAwesomeIcon>
-                    <FontAwesomeIcon icon={faYoutube}></FontAwesomeIcon>
+                <div className='flex md:flex-row gap-6 items-center mt-4 md:mt-0 flex-col'>
+                    <p>Follow Us On </p>
+                    <span className='flex gap-6 items-center '>
+                        <FontAwesomeIcon icon={faTwitter} className='cursor-pointer hover:text-orange-400 hover:duration-500'></FontAwesomeIcon>
+                        <FontAwesomeIcon icon={faFacebookF} className='cursor-pointer hover:text-orange-400 hover:duration-500'></FontAwesomeIcon>
+                        <FontAwesomeIcon icon={faInstagram} className='cursor-pointer hover:text-orange-400 hover:duration-500'></FontAwesomeIcon>
+                        <FontAwesomeIcon icon={faYoutube} className='cursor-pointer hover:text-orange-400 hover:duration-500'></FontAwesomeIcon>
+                    </span>
                 </div>
             </div>
         </>

@@ -52,40 +52,38 @@ const ManageInventory = () => {
     }
     return (
         <>
-            <div className='px-12'>
-                <div className='flex justify-between my-12'>
-                    <p className='text-3xl text-center'> Manage Inventories</p>
+            <div className='md:px-12 px-4'>
+                <div className='flex justify-between my-12 items-center'>
+                    <p className='md:text-3xl text-2xl text-center'> Manage Inventories</p>
                     <div>
                         <Link to='/addItems'>
                             <button className='border-4 py-2 px-4 border-blue-400 text-center cursor-pointer font-semibold tracking-wider hover:bg-blue-400 hover:text-white hover:duration-500'> Add Cars </button>
                         </Link>
-
                     </div>
-
                 </div>
 
                 {
                     cars.map(car =>
                         <div key={car._id}>
-                            <div className='grid grid-cols-3 gap-8'>
+                            <div className='grid md:grid-cols-3 grid-cols-1 gap-8'>
                                 <div>
                                     <img src={car.img} alt="" className='w-[450px]' />
                                 </div>
-                                <div className='col-span-2 flex flex-col justify-center'>
-                                    <div className='flex justify-between'>
-                                        <div className='mb-6'>
+                                <div className='col-span-2 flex flex-col justify-center '>
+                                    <div className='flex justify-between mb-6 items-center'>
+                                        <div>
                                             <p className='text-2xl font-semibold'>{car.name}</p>
                                             <p className='text-sm text-slate-500 pt-2'>Vendor: {car.vendor}</p>
                                         </div>
                                         <div>
-                                            <p className='text-2xl bg-orange-400 px-4 py-4 italic price font-bold'>${car.price}</p>
+                                            <p className='text-2xl bg-orange-400 px-4 py-4 italic price font-bold mb-4 md:mb-0 w-full'>${car.price}</p>
                                         </div>
                                     </div>
-                                    <p className='w-1/2 text-slate-600'>{car.description}</p>
-                                    <div className='flex justify-between items-center'>
-                                        <p className='text-slate-800 py-2 mt-4 px-2 bg-slate-300 rounded-lg font-semibold'>Quantity: {car.quantity}</p>
+                                    <p className='md:w-1/2 text-slate-600'>{car.description}</p>
+                                    <div className='flex justify-between items-center mt-4'>
+                                        <p className='text-slate-800 py-2 px-2 bg-slate-300 rounded-lg font-semibold'>Quantity: {car.quantity}</p>
 
-                                        <button className='border-4 py-2 border-amber-400 text-center cursor-pointer w-1/6 font-semibold tracking-wider hover:bg-amber-400 hover:duration-500'
+                                        <button className='border-4 py-2 border-amber-400 text-center cursor-pointer md:w-1/6 font-semibold tracking-wider hover:bg-amber-400 hover:duration-500 px-2'
                                             onClick={() => handleDelete(car._id)}> Delete
                                             <FontAwesomeIcon icon={faTrashAlt} className='pl-2 '></FontAwesomeIcon></button>
                                     </div>
@@ -98,14 +96,14 @@ const ManageInventory = () => {
                 }
                 <div className='text-center mb-8'>
                     {
-                        [...Array(totalPage).keys()].map(num =>
+                        [...Array(totalPage).keys()].map((num, index) =>
                             <button className={`border-2 border-amber-400 px-2 mr-1 bg-slate-200 font-semibold 
                             ${activePage === num ? 'bg-amber-400' : ''}`}
-                                onClick={() => setActivePage(num)} key={num}>
+                                onClick={() => setActivePage(num)} key={index}>
                                 {num + 1}
                             </button>)
                     }
-                    <div className='flex items-center mt-4 justify-around w-1/2 mx-auto'>
+                    <div className='flex items-center mt-8 justify-around md:w-1/2 mx-auto '>
                         <div className='flex items-center'>
                             <p className='pr-2 font-semibold'>Show: </p>
                             <select onChange={(e) => setLimit(e.target.value)} className='border-2 px-2 py-[3px] block border-slate-500'>

@@ -7,12 +7,13 @@ import four from '../../images/four.png';
 const Blogs = () => {
     return (
         <>
-            <div className='px-12 my-16'>
-                <div className='flex gap-8 border-2 border-amber-400 rounded-lg p-4'>
-                    <div className='basis-[50%] flex items-center'>
+            <div className='md:px-12 my-16 px-4'>
+                <p className='mb-12 text-center text-3xl font-semibold uppercase'>Our Blogs</p>
+                <div className='flex md:gap-8 md:flex-row flex-col border-2 border-amber-400 rounded-lg p-4'>
+                    <div className='basis-[50%] flex items-center mb-4 md:mb-0'>
                         <img src={one} alt="" className='w-[500px] mx-auto block ' />
                     </div>
-                    <div className='flex flex-col gap-4 px-4'>
+                    <div className='flex flex-col gap-4 md:px-4'>
                         <p className='font-semibold text-2xl'>
                             Difference between Javascript and NodeJs.
                         </p>
@@ -42,10 +43,10 @@ const Blogs = () => {
                         </div>
                     </div>
                 </div>
-                <div className='grid grid-cols-2 gap-12 my-12'>
+                <div className='grid md:grid-cols-2 grid-cols-1 gap-12 my-12'>
                     <div className='flex flex-col border-2 border-amber-400 rounded-lg p-4'>
                         <div className='flex items-center'>
-                            <img src={two} alt="" className='w-full h-[350px] mx-auto block ' />
+                            <img src={two} alt="" className='w-full md:h-[350px] mx-auto block ' />
                         </div>
                         <div className='flex flex-col gap-4 '>
                             <p className='font-semibold text-2xl mt-4'>When should you use nodejs and when should you use mongodb?</p>
@@ -56,7 +57,7 @@ const Blogs = () => {
                     </div>
                     <div className='flex flex-col border-2 border-amber-400 rounded-lg p-4'>
                         <div className='flex items-center'>
-                            <img src={three} alt="" className='w-full h-[350px] mx-auto block ' />
+                            <img src={three} alt="" className='w-full md:h-[350px] mx-auto block ' />
                         </div>
                         <div className='flex flex-col gap-4'>
                             <p className='font-semibold text-2xl mt-4'>Differences between sql and nosql databases.</p>
@@ -83,8 +84,8 @@ const Blogs = () => {
                         </div>
                     </div>
                 </div>
-                <div className='flex gap-8 items-center border-2 border-amber-400 rounded-lg p-4'>
-                    <p className='basis-[50%] md:pr-32 text-justify'>
+                <div className='flex md:flex-row flex-col gap-8 items-center border-2 border-amber-400 rounded-lg p-4'>
+                    <p className='basis-[50%] md:pr-32 text-justify order-2'>
                         <p className='font-semibold text-2xl mb-4 '>What is the purpose of jwt and how does it work</p>
                         JWT is mainly used for authorization purposes between client and server
                         When the client login with a username and password, the server creates a token for the client. Client stores the token on local storage or browser cookies.

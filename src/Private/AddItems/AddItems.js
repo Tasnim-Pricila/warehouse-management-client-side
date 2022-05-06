@@ -33,7 +33,7 @@ const AddItems = () => {
 
     return (
         <>
-            <div className='w-1/4 mx-auto my-12'>
+            <div className='md:w-1/4 mx-auto my-12 px-4'>
                 <div className='text-center'>
                     <p className='text-4xl uppercase text-orange-40'>Add New Cars</p>
                     <p className='mt-4 mb-12 text-slate-500'>Welcome back! Submit your cars description specifications image etc...</p>

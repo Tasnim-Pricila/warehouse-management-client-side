@@ -11,37 +11,49 @@ const Header = () => {
     const [user] = useAuthState(auth);
     return (
         <>
-            <div className='flex justify-between items-center px-12 py-4 bg-[#1B1E1E] text-white sticky top-0 z-50'>
+            <div className='flex justify-between  items-center md:px-12 px-2 py-4 bg-[#1B1E1E] text-white sticky top-0 z-50'>
+                {/* Logo  */}
                 <div>
-                    <Link to='/home' className='uppercase font-semibold text-orange-600 tracking-wider'>Vintage Exotic Cars</Link>
+                    <Link to='/home' className='uppercase font-semibold tracking-wider'>Vintage Exotic Cars</Link>
                 </div>
+
+                {/* Menu Icon  */}
                 <div onClick={() => setMenuIcon(!menuIcon)} className='w-6 h-6 md:hidden'>
                     {menuIcon ? <FontAwesomeIcon icon={faX}></FontAwesomeIcon> : <FontAwesomeIcon icon={faHamburger} ></FontAwesomeIcon>}
                 </div>
-                <div className={`flex md:flex-row md:gap-8 flex-col md:static duration-1000 absolute bg-[#1B1E1E] md:bg-transparent text-center uppercase ${menuIcon ? 'right-0 left-0 top-14 py-4 gap-2' : 'right-0 left-0 top-[-220px]'} `}>
-                    <NavLink to='/'> Home </NavLink>
+
+                {/* Menu Item  */}
+                <div className={`flex md:flex-row md:gap-8 flex-col md:static duration-1000 absolute bg-[#1B1E1E] md:bg-transparent text-center uppercase items-center ${menuIcon ? 'right-0 left-0 top-14 py-4 gap-2' : 'right-0 left-0 top-[-220px]'} `}>
+
+                    <NavLink to='/' className={({ isActive }) => (isActive ? "text-orange-600" : "")}> Home </NavLink>
+
                     {user &&
                         <>
-                            <NavLink to='/manageInventory'> Manage Inventories </NavLink>
-                            <NavLink to='/addItems'> Add Items </NavLink>
-                            <NavLink to='/myItems'> My Items </NavLink>
+                            <NavLink to='/manageInventory' className={({ isActive }) => (isActive ? "text-orange-600" : "")}> Manage Inventories </NavLink>
+                            <NavLink to='/addItems' className={({ isActive }) => (isActive ? "text-orange-600" : "")}> Add Items </NavLink>
+                            <NavLink to='/myItems' className={({ isActive }) => (isActive ? "text-orange-600" : "")}> My Items </NavLink>
                         </>
                     }
-                    <NavLink to='/blogs'> Blogs </NavLink>
-                    <NavLink to='/contact'> Contact </NavLink>
-                </div>
 
-                {!user &&
-                    <NavLink to='/login' className={'uppercase'}>
-                        <FontAwesomeIcon icon={faUser} className='pr-2'></FontAwesomeIcon> Login
-                    </NavLink>
-                }
-                {user &&
-                    <button className='uppercase border border-orange-400 rounded-lg py-1 px-4'
-                        onClick={() => signOut(auth)}>
-                        Logout <FontAwesomeIcon icon={faSignOut} className='pl-2'></FontAwesomeIcon>
-                    </button>
-                }
+                    <NavLink to='/blogs' className={({ isActive }) => (isActive ? "text-orange-600" : "")}> Blogs </NavLink>
+                    <NavLink to='/contact' className={({ isActive }) => (isActive ? "text-orange-600" : "")}> Contact </NavLink>
+
+                    <div>
+                    {!user &&
+                        <NavLink to='/login' className={'uppercase'}>
+                            <FontAwesomeIcon icon={faUser} className='pr-2'></FontAwesomeIcon> Login
+                        </NavLink>
+                    }
+                    {user &&
+                        <button className='uppercase border border-orange-400 rounded px-4 py-1 '
+                            onClick={() => signOut(auth)}>
+                            Logout
+                            <FontAwesomeIcon icon={faSignOut} className='pl-2'></FontAwesomeIcon>
+                        </button>
+                    }
+                </div>
+                </div>
+                
             </div>
         </>
     );

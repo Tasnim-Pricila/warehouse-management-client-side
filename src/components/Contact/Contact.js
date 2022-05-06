@@ -13,11 +13,11 @@ const Contact = () => {
     return (
         <>
             <div className='contact-background'></div>
-            <div className=' w-2/3 mx-auto border py-12 px-8 shadow-2xl contact'>
+            <div className=' md:w-2/3 md:mx-auto border py-12 px-8 shadow-2xl contact mx-4'>
                 <p className='text-3xl mb-12 text-amber-700'>Contact us for any further questions, possible projects and
                     business partnerships</p>
 
-                <div className='grid grid-cols-3 gap-12'>
+                <div className='grid md:grid-cols-3 grid-cols-1 gap-12'>
                     <div>
                         <div className='flex justify-between items-center text-slate-600'>
                             <p className='text-2xl font-semibold mb-2 uppercase'>Conatct Directly</p>
@@ -47,15 +47,15 @@ const Contact = () => {
                     </div>
                 </div>
             </div>
-            <div className='mx-36 border-2 bg-slate-100 mb-28'>
+            <div className='md:mx-36 border-2 bg-slate-100 mb-28 mx-4'>
                 <form onSubmit={handleSubmit(onSubmit)}
-                    className='m-24'>
+                    className='md:m-24 m-16'>
                         <p className='text-3xl font-semibold mb-4 text-slate-800'>Get In Touch</p>
-                    <div className='flex justify-between'>
+                    <div className='flex justify-between flex-col md:flex-row'>
                         {/* Name Field  */}
                         <div>
                             <input placeholder='Name' type='text' {...register("name", { required: true, })}
-                                className='block border-slate-500 border-2 mt-6 pl-4 py-2 bg-white w-[300px]'/>
+                                className='block border-slate-500 border-2 mt-6 pl-4 py-2 bg-white md:w-[300px]'/>
                             <small className='text-red-500 '>
                                 {errors.name?.type === 'required' && "Name is required"}
                             </small>
@@ -65,7 +65,7 @@ const Contact = () => {
                         <div>
                             <input placeholder='Email'  {...register("email", { required: true, pattern: /\S+@\S+\.\S+/ })}
                                 className='block border-slate-500 border-2  pl-4 py-2 bg-white  
-                             mt-6 w-[300px]'/>
+                             mt-6 md:w-[300px]'/>
 
                             <small className='text-red-500 '>
                                 {errors.email?.type === 'required' && "Email is required"}
@@ -78,7 +78,7 @@ const Contact = () => {
                         <div>
                             <input placeholder='Phone' type='text' {...register("phone", { required: true, })}
                                 className='block border-slate-500 border-2  pl-4 py-2 bg-white 
-                             mt-6 w-[300px]'/>
+                             mt-6 md:w-[300px]'/>
 
                             <small className=' text-red-500'>
                                 {errors.phone?.type === 'required' && "phone is required"}
