@@ -2,17 +2,15 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Loading from '../../components/Loading/Loading';
-import useCars from '../../CustomHook/useCars';
 
 const ManageInventory = () => {
 
-    const [loading, setLoading] = useState(true);
     const [totalPage, setTotalPage] = useState(0);
     const [totalCar, setTotalCar] = useState(0);
     const [activePage, setActivePage] = useState(0);
     const [limit, setLimit] = useState(5);
     const [cars, setCars] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch(`http://localhost:5000/cars?activePage=${activePage}&limit=${limit}`)
@@ -21,7 +19,7 @@ const ManageInventory = () => {
                 setCars(data)
                 setLoading(!loading);
             })
-    }, [activePage, limit, loading])
+    }, [activePage, limit])
 
     useEffect(() => {
         fetch('http://localhost:5000/totalCar')
@@ -96,7 +94,6 @@ const ManageInventory = () => {
                             </div>
                             <p className='h-[2px] my-6 bg-orange-400'></p>
                         </div>
-
                     )
                 }
                 <div className='text-center mb-8'>
@@ -110,18 +107,14 @@ const ManageInventory = () => {
                     }
                     <div className='flex items-center mt-4 justify-around w-1/2 mx-auto'>
                         <div className='flex items-center'>
-                            <p className='pr-2'>Show: </p>
+                            <p className='pr-2 font-semibold'>Show: </p>
                             <select onChange={(e) => setLimit(e.target.value)} className='border-2 px-2 py-[3px] block border-slate-500'>
-
                                 <option value="5"> 5 </option>
-                                <option value="10"> 10 </option>
-                                <option value="15"> 15 </option>
+                                <option value="10"> 10 </option>  
                             </select>
                         </div>
-
-                        <p className='text-slate-600'> <b className='text-black'>Results: </b> {activePage * limit} - {(activePage * limit) + cars.length} of {totalCar} Cars </p>
+                        <p className='text-slate-600'> <b className='text-black'>Results: </b> {(activePage * limit) + 1} - {(activePage * limit) + cars.length } of {totalCar} Cars  </p>
                     </div>
-
                 </div>
             </div>
         </>

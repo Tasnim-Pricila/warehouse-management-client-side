@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 const useCars = (url) => {
     const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(true);
-    
+
     useEffect(() => {
         fetch(url)
             .then(res =>res.json())
