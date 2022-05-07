@@ -1,4 +1,4 @@
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -11,9 +11,11 @@ const ManageInventory = () => {
     const [limit, setLimit] = useState(5);
     const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [showModal, setShowModal] = useState(false);
+    const [deleteId, setDeleteId] = useState('');
 
     useEffect(() => {
-        fetch(`https://aqueous-castle-23804.herokuapp.com/cars?activePage=${activePage}&limit=${limit}`)
+        fetch(`http://localhost:5000/cars?activePage=${activePage}&limit=${limit}`)
             .then(res => res.json())
             .then(data => {
                 setCars(data)
@@ -22,44 +24,77 @@ const ManageInventory = () => {
     }, [activePage, limit])
 
     useEffect(() => {
-        fetch('https://aqueous-castle-23804.herokuapp.com/totalCar')
+        fetch('http://localhost:5000/totalCar')
             .then(res => res.json())
             .then(data => {
                 setTotalCar(data.result);
                 const totalCar = data.result;
                 const page = Math.ceil(totalCar / limit);
                 setTotalPage(page);
+
             })
     }, [limit])
 
     const handleDelete = (id) => {
-        const yes = window.confirm("Are you sure you want to delete?")
-        if (yes) {
-            console.log("Deleting User with Id", id);
-
-            fetch(`https://aqueous-castle-23804.herokuapp.com/cars/${id}`, {
-                method: 'DELETE'
+        fetch(`http://localhost:5000/cars/${id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    console.log('deleetd');
+                    const remainingCars = cars.filter(car => car._id !== id);
+                    setCars(remainingCars);
+                    setShowModal(false);
+                }
             })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.deletedCount > 0) {
-                        console.log('deleetd');
-                        const remainingCars = cars.filter(car => car._id !== id);
-                        setCars(remainingCars);
-                    }
-                })
-        }
     }
+    const handleModal = (id) => {
+        setShowModal(true);
+        setDeleteId(id);
+    }
+
     return (
         <>
-            <div className='md:px-12 px-4'>
-                <div className='flex justify-between my-12 items-center'>
-                    <p className='md:text-3xl text-2xl text-center'> Manage Inventories</p>
-                    <div>
-                        <Link to='/addItems'>
-                            <button className='border-4 py-2 px-4 border-blue-400 text-center cursor-pointer font-semibold tracking-wider hover:bg-blue-400 hover:text-white hover:duration-500'> Add New Cars </button>
-                        </Link>
+            {
+                showModal &&
+                <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-0">
+                    <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                        <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                            <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                                <h3 className="text-2xl font-semibold">Confirmation</h3>
+                                <button className="p-1 ml-auto bg-transparent border-0 text-slate-700 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" onClick={() => setShowModal(false)}>
+                                    <FontAwesomeIcon icon={faX} className='w-[10px]'></FontAwesomeIcon>
+                                </button>
+                            </div>
+
+                            <div className="relative py-4 px-8  flex-auto">
+                                <p className="my-4 text-slate-500 text-lg leading-relaxed">
+                                    Are you sure you want to delete?
+                                </p>
+                            </div>
+
+                            <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                                <button
+                                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" onClick={() => setShowModal(false)}>
+                                    Cancel
+                                </button>
+                                <button className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 tracking-wider" onClick={() => handleDelete(deleteId)}>
+                                    Yes
+                                </button>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            }
+            <div className='md:px-12 px-4'>
+                <div className='flex justify-end mt-4'>
+                    <Link to='/addItems'>
+                        <button className='border-4 py-2 px-4 border-blue-400 text-center cursor-pointer font-semibold tracking-wider hover:bg-blue-400 hover:text-white hover:duration-500 text-sm'> Add New Cars </button>
+                    </Link>
+                </div>
+                <div className='flex justify-center mt-4 mb-12 items-center'>
+                    <p className='md:text-3xl text-2xl text-center'> Manage Inventories</p>
                 </div>
 
                 {
@@ -84,7 +119,7 @@ const ManageInventory = () => {
                                         <p className='text-slate-800 py-2 px-2 bg-slate-300 rounded-lg font-semibold'>Quantity: {car.quantity}</p>
 
                                         <button className='border-4 py-2 border-amber-400 text-center cursor-pointer md:w-1/6 font-semibold tracking-wider hover:bg-amber-400 hover:duration-500 px-2'
-                                            onClick={() => handleDelete(car._id)}> Delete
+                                            onClick={() => handleModal(car._id)}> Delete
                                             <FontAwesomeIcon icon={faTrashAlt} className='pl-2 '></FontAwesomeIcon></button>
                                     </div>
 
@@ -108,10 +143,10 @@ const ManageInventory = () => {
                             <p className='pr-2 font-semibold'>Show: </p>
                             <select onChange={(e) => setLimit(e.target.value)} className='border-2 px-2 py-[3px] block border-slate-500'>
                                 <option value="5"> 5 </option>
-                                <option value="10"> 10 </option>  
+                                <option value="10"> 10 </option>
                             </select>
                         </div>
-                        <p className='text-slate-600'> <b className='text-black'>Results: </b> {(activePage * limit) + 1} - {(activePage * limit) + cars.length } of {totalCar} Cars  </p>
+                        <p className='text-slate-600'> <b className='text-black'>Results: </b> {(activePage * limit) + 1} - {(activePage * limit) + cars.length} of {totalCar} Cars  </p>
                     </div>
                 </div>
             </div>

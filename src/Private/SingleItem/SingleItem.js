@@ -8,7 +8,7 @@ const SingleItem = () => {
 
     const { id } = useParams();
 
-    const [cars, setCars, loading] = useCars(`https://aqueous-castle-23804.herokuapp.com/cars/${id}`);
+    const [cars, setCars, loading] = useCars(`http://localhost:5000/cars/${id}`);
     const { name, description, price, quantity, vendor, img } = cars;
 
     // Decrease quantity 
@@ -30,7 +30,7 @@ const SingleItem = () => {
         const updated = {...cars, quantity : updatedQuantity};
 
         // Update data
-        fetch(`https://aqueous-castle-23804.herokuapp.com/cars/${id}`, {
+        fetch(`http://localhost:5000/cars/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -64,7 +64,7 @@ const SingleItem = () => {
         const updated = {...cars, quantity : updatedQuantity};
 
         // Update data
-        fetch(`https://aqueous-castle-23804.herokuapp.com/cars/${id}`, {
+        fetch(`http://localhost:5000/cars/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

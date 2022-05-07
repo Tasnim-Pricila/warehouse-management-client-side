@@ -3,7 +3,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
-import addCar from '../../images/addCar.jpg'
 
 const AddItems = () => {
     const [user] = useAuthState(auth);
@@ -12,7 +11,7 @@ const AddItems = () => {
     // React Hook Form 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = (data) => {
-        fetch('https://aqueous-castle-23804.herokuapp.com/cars', {
+        fetch('http://localhost:5000/cars', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -46,7 +46,7 @@ const Home = () => {
         },
     ]
 
-    const [cars, setCars, loading] = useCars('https://aqueous-castle-23804.herokuapp.com/cars');
+    const [cars, setCars, loading] = useCars('http://localhost:5000/cars');
 
     return loading ? ( <Loading/> ) : (
         <>
