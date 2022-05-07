@@ -56,7 +56,7 @@ const Home = () => {
                     carsBanner.map ((banner, index) =>
                         <div key={index}>
                             <div style={{ backgroundImage: `url('${banner.image}')` }} className='bg-cover h-[95vh] bg-no-repeat bg-blend-overlay md:bg-[#0000003f] bg-[#00000063] bg-center object-cover'>
-                                <div className='text-white md:px-20 px-4 flex flex-col justify-center h-full'>
+                                <div className='text-white md:px-12 flex flex-col justify-center h-full bottom-4 px-2'>
                                     <p className='font-bold md:text-3xl md:pl-2'>{banner.smallTitle}</p>
                                     <h1 className='md:text-9xl text-5xl'>{banner.title}</h1>
                                     <h2 className='font-semibold pt-8'> 
@@ -76,7 +76,7 @@ const Home = () => {
             </Slider>
 
             {/* Looking For  */}
-            <section className='bg-[#E5EAED]'>
+            <section className='bg-[#E5EAED] max-w-full overflow-hidden'>
                 <div className='text-center'>
                     <p className='md:text-3xl text-2xl pt-8'>
                         What are you looking for?
@@ -118,7 +118,7 @@ const Home = () => {
             </section>
 
             {/* Our CArs  */}
-            <section className='mt-12 '>
+            <section className='mt-12 max-w-full overflow-hidden'>
                 <div className='text-center'>
                     <p className='text-3xl'>
                         Featured Car Deals
@@ -145,7 +145,7 @@ const Home = () => {
 
             {/* Excellent Dealership  */}
             <section className='delearship md:px-20 py-28 bg-center bg-blend-overlay 
-            bg-[#00000094] md:bg-[#00000000]'>
+            bg-[#00000094] md:bg-[#00000000] max-w-full overflow-hidden'>
                 <div className='flex md:flex-row flex-col'>
                     <div className='text-white md:pr-48 basis-1/2 px-4 md:px-0'>
                         <p className='text-2xl text-orange-400 uppercase tracking-wider'>Vintage Exotic Cars</p>

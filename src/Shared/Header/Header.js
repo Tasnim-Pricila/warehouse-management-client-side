@@ -11,7 +11,7 @@ const Header = () => {
     const [user] = useAuthState(auth);
     return (
         <>
-            <div className='flex justify-between  items-center md:px-12 px-2 py-4 bg-[#1B1E1E] text-white sticky top-0 z-50'>
+            <div className='flex justify-between items-center md:px-12 px-2 py-4 bg-[#1B1E1E] text-white sticky top-0 z-50'>
                 {/* Logo  */}
                 <div>
                     <Link to='/home' className='uppercase font-semibold tracking-wider'>Vintage Exotic Cars</Link>

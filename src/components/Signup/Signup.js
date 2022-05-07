@@ -9,6 +9,8 @@ import useToken from '../../CustomHook/useToken';
 import auth from '../../firebase.init';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 import Loading from '../Loading/Loading';
+import loginbg from '../../images/loginbg.jpg';
+
 
 const Signup = () => {
 
@@ -85,8 +87,9 @@ const Signup = () => {
 
     return (
         <>
-            <div className='login-background flex items-center justify-center text-white'>
-                <div className='w-1/4'>
+            <div className='flex items-center justify-center text-white bg-cover min-h-[95vh] bg-no-repeat bg-blend-overlay bg-[#0000007c] bg-center' 
+            style={{ backgroundImage: `url('${loginbg}')` }}>
+                <div className='md:w-1/4 px-4 py-16'>
                     <div className='text-center'>
                         <p className='text-4xl uppercase text-orange-40'>Sign Up</p>
                         <p className='mt-4 mb-12 text-slate-500'>Create new account today to reap the benefits of a personalized

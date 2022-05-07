@@ -13,7 +13,6 @@ import Footer from './Shared/Footer/Footer';
 import Header from './Shared/Header/Header';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-import Loading from './components/Loading/Loading';
 import Blogs from './components/Blogs/Blogs';
 import Contact from './components/Contact/Contact';
 

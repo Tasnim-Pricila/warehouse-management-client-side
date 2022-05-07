@@ -10,6 +10,7 @@ import auth from '../../firebase.init';
 import { toast } from 'react-toastify';
 import Loading from '../Loading/Loading';
 import useToken from '../../CustomHook/useToken';
+import loginbg from '../../images/loginbg.jpg';
 
 const Login = () => {
 
@@ -102,8 +103,9 @@ const Login = () => {
 
     return (
         <>
-            <div className='login-background flex items-center justify-center text-white'>
-                <div className='w-1/4'>
+            <div className='flex items-center justify-center text-white bg-cover min-h-[95vh] bg-no-repeat bg-blend-overlay bg-[#0000007c] bg-center' 
+            style={{ backgroundImage: `url('${loginbg}')` }}>
+                <div className='md:w-1/4 px-4'>
                     <div className='text-center'>
                         <p className='text-4xl uppercase text-orange-40'>Log In</p>
                         <p className='mt-4 mb-12 text-slate-500'>Welcome back! Please enter your username
