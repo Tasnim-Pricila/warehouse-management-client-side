@@ -3,13 +3,17 @@ import one from '../../images/one.png';
 import two from '../../images/two.png';
 import three from '../../images/three.jpg';
 import four from '../../images/four.png';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+AOS.init();
+
 
 const Blogs = () => {
     return (
         <>
             <div className='md:px-12 my-16 px-4'>
                 <p className='mb-12 text-center text-3xl font-semibold uppercase'>Our Blogs</p>
-                <div className='flex md:gap-8 md:flex-row flex-col border-2 border-amber-400 rounded-lg p-4'>
+                <div data-aos="flip-up" data-aos-offset="300"data-aos-easing="ease-in-sine" data-aos-duration="1000" data-aos-delay="80" className='flex md:gap-8 md:flex-row flex-col border-2 border-amber-400 rounded-lg p-4'>
                     <div className='basis-[50%] flex items-center mb-4 md:mb-0'>
                         <img src={one} alt="" className='w-[500px] mx-auto block ' />
                     </div>
@@ -44,7 +48,7 @@ const Blogs = () => {
                     </div>
                 </div>
                 <div className='grid md:grid-cols-2 grid-cols-1 gap-12 my-12'>
-                    <div className='flex flex-col border-2 border-amber-400 rounded-lg p-4'>
+                    <div data-aos="fade-right" data-aos-offset="300" data-aos-duration="1000" data-aos-delay="80" className='flex flex-col border-2 border-amber-400 rounded-lg p-4'>
                         <div className='flex items-center'>
                             <img src={two} alt="" className='w-full md:h-[350px] mx-auto block ' />
                         </div>
@@ -55,8 +59,8 @@ const Blogs = () => {
                             If I am creating a website and I need a database to store the data, here I can use MongoDB. But to connect with MongoDB I need a connector and here I can use NodeJS which will help my website to run outside of the server.</p>
                         </div>
                     </div>
-                    <div className='flex flex-col border-2 border-amber-400 rounded-lg p-4'>
-                        <div className='flex items-center'>
+                    <div data-aos="fade-left" data-aos-offset="300" data-aos-duration="1000" data-aos-delay="80" className='flex flex-col border-2 border-amber-400 rounded-lg p-4'>
+                        <div className='flex items-center' >
                             <img src={three} alt="" className='w-full md:h-[350px] mx-auto block ' />
                         </div>
                         <div className='flex flex-col gap-4'>
@@ -84,7 +88,7 @@ const Blogs = () => {
                         </div>
                     </div>
                 </div>
-                <div className='flex md:flex-row flex-col gap-8 items-center border-2 border-amber-400 rounded-lg p-4'>
+                <div data-aos="fade-up" data-aos-offset="300" data-aos-duration="1000" data-aos-delay="80" className='flex md:flex-row flex-col gap-8 items-center border-2 border-amber-400 rounded-lg p-4'>
                     <p className='basis-[50%] md:pr-32 text-justify order-2'>
                         <p className='font-semibold text-2xl mb-4 '>What is the purpose of jwt and how does it work</p>
                         JWT is mainly used for authorization purposes between client and server

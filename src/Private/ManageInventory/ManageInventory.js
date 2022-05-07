@@ -2,6 +2,8 @@ import { faTrashAlt, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useSpring, animated } from 'react-spring'
 
 const ManageInventory = () => {
 
@@ -13,6 +15,7 @@ const ManageInventory = () => {
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
     const [deleteId, setDeleteId] = useState('');
+    const [flip, set] = useState(false)
 
     useEffect(() => {
         fetch(`http://localhost:5000/cars?activePage=${activePage}&limit=${limit}`)
@@ -42,7 +45,10 @@ const ManageInventory = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.deletedCount > 0) {
-                    console.log('deleetd');
+                    toast.success('Item Deleted Successfully', {
+                        theme: 'colored',
+                        delay: 0,
+                    });
                     const remainingCars = cars.filter(car => car._id !== id);
                     setCars(remainingCars);
                     setShowModal(false);
@@ -53,6 +59,15 @@ const ManageInventory = () => {
         setShowModal(true);
         setDeleteId(id);
     }
+    // React Spring 
+    const props = useSpring({
+        to: { opacity: 1 },
+        from: { opacity: 0 },
+        reset: true,
+        reverse: flip,
+        delay: 300,
+        onRest: () => set(!flip),
+      })
 
     return (
         <>
@@ -88,11 +103,11 @@ const ManageInventory = () => {
                 </div>
             }
             <div className='md:px-12 px-4'>
-                <div className='flex justify-end mt-4'>
+                <animated.div className='flex justify-end mt-4' style={props}>
                     <Link to='/addItems'>
                         <button className='border-4 py-2 px-4 border-blue-400 text-center cursor-pointer font-semibold tracking-wider hover:bg-blue-400 hover:text-white hover:duration-500 text-sm'> Add New Cars </button>
                     </Link>
-                </div>
+                </animated.div>
                 <div className='flex justify-center mt-4 mb-12 items-center'>
                     <p className='md:text-3xl text-2xl text-center'> Manage Inventories</p>
                 </div>
@@ -132,7 +147,7 @@ const ManageInventory = () => {
                 <div className='text-center mb-8'>
                     {
                         [...Array(totalPage).keys()].map((num, index) =>
-                            <button className={`border-2 border-amber-400 px-2 mr-1 bg-slate-200 font-semibold 
+                            <button className={`border-2 border-amber-400 px-2 mr-1 font-semibold rounded-full
                             ${activePage === num ? 'bg-amber-400' : ''}`}
                                 onClick={() => setActivePage(num)} key={index}>
                                 {num + 1}

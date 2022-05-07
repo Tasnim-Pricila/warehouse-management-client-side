@@ -7,6 +7,9 @@ import Cars from '../Cars/Cars';
 import { Link } from 'react-router-dom';
 import Loading from '../Loading/Loading';
 import useCars from '../../CustomHook/useCars';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+AOS.init();
 
 const Home = () => {
     const settings = {
@@ -47,7 +50,7 @@ const Home = () => {
     ]
 
     const [cars, setCars, loading] = useCars('http://localhost:5000/cars');
-
+    
     return loading ? ( <Loading/> ) : (
         <>
             {/* Banner Section  */}
@@ -56,7 +59,7 @@ const Home = () => {
                     carsBanner.map ((banner, index) =>
                         <div key={index}>
                             <div style={{ backgroundImage: `url('${banner.image}')` }} className='bg-cover h-[95vh] bg-no-repeat bg-blend-overlay md:bg-[#0000003f] bg-[#00000063] bg-center object-cover'>
-                                <div className='text-white md:px-12 flex flex-col justify-center h-full bottom-4 px-2'>
+                                <div data-aos="fade-right" data-aos-offset="300"data-aos-easing="ease-in-sine" data-aos-duration="1000" data-aos-delay="80" className='text-white md:px-12 flex flex-col justify-center h-full bottom-4 px-2'>
                                     <p className='font-bold md:text-3xl md:pl-2'>{banner.smallTitle}</p>
                                     <h1 className='md:text-9xl text-5xl'>{banner.title}</h1>
                                     <h2 className='font-semibold pt-8'> 
@@ -77,14 +80,14 @@ const Home = () => {
 
             {/* Looking For  */}
             <section className='bg-[#E5EAED] max-w-full overflow-hidden'>
-                <div className='text-center'>
+                <div data-aos="zoom-in" data-aos-offset="300"data-aos-easing="ease-in-sine" data-aos-duration="600" data-aos-delay="50" className='text-center'>
                     <p className='md:text-3xl text-2xl pt-8'>
                         What are you looking for?
                     </p>
                     <p className='text-base mt-4 text-slate-500 car-deals'>Best Car Deals</p>
                 </div>
                 <div className='flex md:flex-row flex-col md:px-20 md:gap-12 text-center mt-8'>
-                    <div className='p-12 border-r-[1px]'>
+                    <div data-aos="fade-right" data-aos-offset="300"data-aos-easing="ease-in-sine" data-aos-duration="600" data-aos-delay="50" className='p-12 border-r-[1px]'>
                         <div>
                             <p className='bg-orange-300 rounded-full w-[50px] h-[45px] text-center font-[900] p-2 text-white text-2xl relative left-[55%]
                             '>$</p>
@@ -93,7 +96,7 @@ const Home = () => {
                         <p className='my-4'>Car Sale</p>
                         <p className='text-[#74787B]'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, unde!</p>
                     </div>
-                    <div className='p-12 border-r-[1px]'>
+                    <div data-aos="zoom-in" data-aos-offset="300"data-aos-easing="ease-in-sine" data-aos-duration="600" data-aos-delay="50" className='p-12 border-r-[1px]'>
                         <div>
                             <p className='bg-amber-500 rounded-full w-[50px] h-[45px] text-center font-[900] p-2 text-white text-2xl relative left-[55%]
                             '><FontAwesomeIcon icon={faKey}></FontAwesomeIcon></p>
@@ -103,7 +106,7 @@ const Home = () => {
                         <p className='my-4'>Car Buy</p>
                         <p className='text-[#74787B]'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, unde!</p>
                     </div>
-                    <div className='p-12'>
+                    <div data-aos="fade-left" data-aos-offset="300"data-aos-easing="ease-in-sine" data-aos-duration="600" data-aos-delay="50" className='p-12'>
                         <div>
                             <p className='bg-emerald-500 rounded-full w-[50px] h-[45px] text-center font-[900] p-2 text-white text-2xl relative left-[55%]
                             '>R</p>
@@ -118,14 +121,14 @@ const Home = () => {
             </section>
 
             {/* Our CArs  */}
-            <section className='mt-12 max-w-full overflow-hidden'>
+            <section  className='mt-12 max-w-full overflow-hidden' data-aos="zoom-in-up" data-aos-easing="ease-out-cubic" data-aos-duration = "2000" data-aos-delay="80">
                 <div className='text-center'>
                     <p className='text-3xl'>
                         Featured Car Deals
                     </p>
                     <p className='text-base mt-4 text-slate-500 car-deals'>Best Car Deals</p>
                 </div>
-                <div className='grid md:grid-cols-3 grid-cols-1 gap-8 mt-16 md:px-12 px-2'>
+                <div className='grid md:grid-cols-3 grid-cols-1 gap-8 mt-16 md:px-12 px-2' >
 
                     {
                         cars.slice(0, 6).map(car =>
@@ -144,9 +147,9 @@ const Home = () => {
             </section>
 
             {/* Excellent Dealership  */}
-            <section className='delearship md:px-20 py-28 bg-center bg-blend-overlay 
+            <section  className='delearship md:px-20 py-28 bg-center bg-blend-overlay 
             bg-[#00000094] md:bg-[#00000000] max-w-full overflow-hidden'>
-                <div className='flex md:flex-row flex-col'>
+                <div className='flex md:flex-row flex-col' data-aos= "zoom-in-up" data-aos-easing= "ease-out-cubic" data-aos-duration="2000" data-aos-delay="80">
                     <div className='text-white md:pr-48 basis-1/2 px-4 md:px-0'>
                         <p className='text-2xl text-orange-400 uppercase tracking-wider'>Vintage Exotic Cars</p>
                         <p className='md:text-5xl text-4xl font-extrabold pt-8'>EXCELLENT
@@ -160,7 +163,7 @@ const Home = () => {
                     <div className='grid grid-cols-2 text-white gap-20 place-content-center my-8 px-4 md:my-0 md:px-0'>
                         <div>
                             <p className='md:text-6xl text-5xl font-bold mb-4 text-orange-400 relative'>
-                                500+</p>
+                                500+ </p>
                             <p className=''>VEHICLES AVAILABLE RIGHT NOW</p>
                         </div>
                         <div>
