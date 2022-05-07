@@ -29,8 +29,8 @@ const Cars = ({ car }) => {
                     <p>Quantity: <span className='text-[#09a0f7]'>{quantity}</span></p>
                 </div>
 
-                <button className='mt-4 py-2 border-4 border-amber-400 text-center cursor-pointer w-full'
-                    onClick={() => navigateCar(_id)}> Manage</button>
+                <button className='mt-4 py-2 border-4 border-amber-400 text-center cursor-pointer w-full font-semibold'
+                    onClick={() => navigateCar(_id)}> Update Stock </button>
             </div>
         </div>
     );

@@ -23,7 +23,8 @@ const Header = () => {
                 </div>
 
                 {/* Menu Item  */}
-                <div className={`flex md:flex-row md:gap-8 flex-col md:static duration-1000 absolute bg-[#1B1E1E] md:bg-transparent text-center uppercase items-center ${menuIcon ? 'right-0 left-0 top-14 py-4 gap-2' : 'right-0 left-0 top-[-220px]'} `}>
+                <div className={`flex md:flex-row md:gap-8 flex-col md:static duration-1000 absolute bg-[#1B1E1E] md:bg-transparent text-center uppercase items-center
+                 ${menuIcon ? 'right-0 left-0 top-14 py-4 gap-2' : 'right-0 left-0 top-[-220px]'} `}>
 
                     <NavLink to='/' className={({ isActive }) => (isActive ? "text-orange-600" : "")}> Home </NavLink>
 

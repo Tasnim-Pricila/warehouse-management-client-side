@@ -42,7 +42,7 @@ const MyItems = () => {
             }
         }
         getCars();
-    }, [email, user ])
+    }, [email, user])
 
     const handleDelete = (id) => {
         const yes = window.confirm("Are you sure you want to delete?")
@@ -55,7 +55,10 @@ const MyItems = () => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.deletedCount > 0) {
-                        console.log('deleetd');
+                        toast.success('Item Deleted Successfully', {
+                            theme: 'colored',
+                            delay: 0,
+                        });
                         const remainingCars = cars.filter(car => car._id !== id);
                         setCars(remainingCars);
 
@@ -64,46 +67,40 @@ const MyItems = () => {
         }
     }
 
-    return loading ? ( <Loading/> ) : (
+    return loading ? (<Loading />) : (
         <>
-            <div className='md:px-12 px-4'>
+            <div className='md:px-12 px-2 mb-12'>
                 <div className=' my-12'>
                     <p className='text-3xl text-center'> My Items</p>
                 </div>
-                {
-                    cars.map(car =>
-                        <div key={car._id}>
-                            <div className='grid md:grid-cols-3 grid-cols-1 gap-8 justify-center items-center'>
-                                <div>
-                                    <img src={car.img} alt="" className='w-[450px]' />
-                                </div>
-                                <div className='col-span-2 flex flex-col justify-center'>
-                                    <div className='flex justify-between items-center mb-6'>
-                                        <div>
-                                            <p className='text-2xl font-semibold'>{car.name}</p>
-                                            <p className='text-sm'>Vendor: {car.vendor}</p>
-                                        </div>
-                                        <div>
-                                            <p className='text-2xl bg-orange-400 px-4 py-4 italic price'>${car.price}</p>
-                                        </div>
-                                    </div>
-                                    <p className='md:w-1/2 text-slate-600'>{car.description}</p>
-                                    <div className='flex justify-between items-center mt-4'>
-                                        <p className='text-slate-800 py-2  px-2 bg-slate-300 rounded-lg font-semibold'>Quantity: {car.quantity}</p>
 
-                                        <button className='border-4 py-2 border-amber-400 text-center cursor-pointer md:w-1/6 font-semibold tracking-wider px-2 hover:bg-amber-400 hover:duration-500'
-                                            onClick={() => handleDelete(car._id)}> Delete
-                                            <FontAwesomeIcon icon={faTrashAlt} className='pl-2 '></FontAwesomeIcon></button>
-                                    </div>
+                <table className="md:table-fixed table-auto border-collapse border border-slate-400 w-full text-center">
+                    <thead>
+                        <tr>
+                            <th className='border border-slate-400 py-3 bg-slate-100 text-orange-400'>Image</th>
+                            <th className='border border-slate-400 py-3 bg-slate-100 text-orange-400'>Car Name</th>
+                            <th className='border border-slate-400 py-3 bg-slate-100 text-orange-400'>Price</th>
+                            <th className='border border-slate-400 py-3 bg-slate-100 text-orange-400'>Quantity</th>
+                            <th className='border border-slate-400 py-3 bg-slate-100 text-orange-400'>Delete</th>
+                        </tr>
+                    </thead>
+                    {
+                        cars.map(car =>
+                            <tbody>
+                                <tr>
+                                    <td className='border border-slate-400'><img src={car.img} alt='' className='w-[100px] block mx-auto' /></td>
+                                    <td className='border border-slate-400'>{car.name}</td>
+                                    <td className='border border-slate-400 font-semibold'>$ {car.price}</td>
+                                    <td className='border border-slate-400'>{car.quantity}</td>
+                                    <td className='border border-slate-400'><button onClick={() => handleDelete(car._id)}>
+                                        <FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon>
+                                        </button></td>
+                                </tr>
+                            </tbody>
 
-                                </div>
-                            </div>
-                            <p className='h-[2px] my-6 bg-orange-400'></p>
-                        </div>
-
-                    )
-                }
-
+                        )
+                    }
+                </table>
             </div>
         </>
     );

@@ -57,7 +57,7 @@ const ManageInventory = () => {
                     <p className='md:text-3xl text-2xl text-center'> Manage Inventories</p>
                     <div>
                         <Link to='/addItems'>
-                            <button className='border-4 py-2 px-4 border-blue-400 text-center cursor-pointer font-semibold tracking-wider hover:bg-blue-400 hover:text-white hover:duration-500'> Add Cars </button>
+                            <button className='border-4 py-2 px-4 border-blue-400 text-center cursor-pointer font-semibold tracking-wider hover:bg-blue-400 hover:text-white hover:duration-500'> Add New Cars </button>
                         </Link>
                     </div>
                 </div>
