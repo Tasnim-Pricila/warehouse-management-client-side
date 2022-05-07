@@ -20,7 +20,7 @@ const MyItems = () => {
 
     useEffect(() => {
         const getCars = async () => {
-            const url = `http://localhost:5000/cars?email=${email}`;
+            const url = `https://aqueous-castle-23804.herokuapp.com/cars?email=${email}`;
             try {
                 const { data } = await axios.get(url, {
                     headers: {
@@ -49,7 +49,7 @@ const MyItems = () => {
         if (yes) {
             console.log("Deleting User with Id", id);
 
-            fetch(`http://localhost:5000/cars/${id}`, {
+            fetch(`https://aqueous-castle-23804.herokuapp.com/cars/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -73,9 +73,9 @@ const MyItems = () => {
                 {
                     cars.map(car =>
                         <div key={car._id}>
-                            <div className='grid md:grid-cols-3 grid-cols-1 gap-8'>
+                            <div className='grid md:grid-cols-3 grid-cols-1 gap-8 justify-center items-center'>
                                 <div>
-                                    <img src={car.img} alt="" className='w-[350px]' />
+                                    <img src={car.img} alt="" className='w-[450px]' />
                                 </div>
                                 <div className='col-span-2 flex flex-col justify-center'>
                                     <div className='flex justify-between items-center mb-6'>

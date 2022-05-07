@@ -13,7 +13,7 @@ const ManageInventory = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/cars?activePage=${activePage}&limit=${limit}`)
+        fetch(`https://aqueous-castle-23804.herokuapp.com/cars?activePage=${activePage}&limit=${limit}`)
             .then(res => res.json())
             .then(data => {
                 setCars(data)
@@ -22,7 +22,7 @@ const ManageInventory = () => {
     }, [activePage, limit])
 
     useEffect(() => {
-        fetch('http://localhost:5000/totalCar')
+        fetch('https://aqueous-castle-23804.herokuapp.com/totalCar')
             .then(res => res.json())
             .then(data => {
                 setTotalCar(data.result);
@@ -37,7 +37,7 @@ const ManageInventory = () => {
         if (yes) {
             console.log("Deleting User with Id", id);
 
-            fetch(`http://localhost:5000/cars/${id}`, {
+            fetch(`https://aqueous-castle-23804.herokuapp.com/cars/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -65,7 +65,7 @@ const ManageInventory = () => {
                 {
                     cars.map(car =>
                         <div key={car._id}>
-                            <div className='grid md:grid-cols-3 grid-cols-1 gap-8'>
+                            <div className='grid md:grid-cols-3 grid-cols-1 gap-8 justify-center items-center'>
                                 <div>
                                     <img src={car.img} alt="" className='w-[450px]' />
                                 </div>

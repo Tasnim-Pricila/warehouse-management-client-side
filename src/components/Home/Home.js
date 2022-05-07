@@ -46,8 +46,7 @@ const Home = () => {
         },
     ]
 
-
-    const [cars, setCars, loading] = useCars('http://localhost:5000/cars');
+    const [cars, setCars, loading] = useCars('https://aqueous-castle-23804.herokuapp.com/cars');
 
     return loading ? ( <Loading/> ) : (
         <>
@@ -56,7 +55,7 @@ const Home = () => {
                 {
                     carsBanner.map ((banner, index) =>
                         <div key={index}>
-                            <div style={{ backgroundImage: `url('${banner.image}')` }} className='bg-cover h-[95vh] bg-no-repeat bg-blend-overlay md:bg-[#0000001c] bg-[#00000063] bg-center object-cover'>
+                            <div style={{ backgroundImage: `url('${banner.image}')` }} className='bg-cover h-[95vh] bg-no-repeat bg-blend-overlay md:bg-[#0000003f] bg-[#00000063] bg-center object-cover'>
                                 <div className='text-white md:px-20 px-4 flex flex-col justify-center h-full'>
                                     <p className='font-bold md:text-3xl md:pl-2'>{banner.smallTitle}</p>
                                     <h1 className='md:text-9xl text-5xl'>{banner.title}</h1>
