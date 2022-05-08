@@ -9,6 +9,10 @@ const Cars = ({ car }) => {
     const navigate = useNavigate();
     const navigateCar = (id) => {
         navigate(`/inventory/${id}`);
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
     }
     
     return (
