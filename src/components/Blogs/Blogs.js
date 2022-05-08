@@ -3,19 +3,17 @@ import one from '../../images/one.png';
 import two from '../../images/two.png';
 import three from '../../images/three.jpg';
 import four from '../../images/four.png';
-import AOS from 'aos';
-import 'aos/dist/aos.css'; // You can also use <link> for styles
-AOS.init();
-
+import Title from '../../Shared/Title/Title';
 
 const Blogs = () => {
     return (
         <>
-            <div className='md:px-12 my-16 px-4'>
+            <Title title='Blogs'></Title>
+            <div className='md:px-20 my-16 px-4'>
                 <p className='mb-12 text-center text-3xl font-semibold uppercase'>Our Blogs</p>
                 <div data-aos="flip-up" data-aos-offset="300"data-aos-easing="ease-in-sine" data-aos-duration="1000" data-aos-delay="80" className='flex md:gap-8 md:flex-row flex-col border-2 border-amber-400 rounded-lg p-4'>
                     <div className='basis-[50%] flex items-center mb-4 md:mb-0'>
-                        <img src={one} alt="" className='w-[500px] mx-auto block ' />
+                        <img src={one} alt="" className='w-[500px] mx-auto block'/>
                     </div>
                     <div className='flex flex-col gap-4 md:px-4'>
                         <p className='font-semibold text-2xl'>
@@ -89,12 +87,12 @@ const Blogs = () => {
                     </div>
                 </div>
                 <div data-aos="fade-up" data-aos-offset="300" data-aos-duration="1000" data-aos-delay="80" className='flex md:flex-row flex-col gap-8 items-center border-2 border-amber-400 rounded-lg p-4'>
-                    <p className='basis-[50%] md:pr-32 text-justify order-2'>
+                    <div className='basis-[50%] md:pr-32 text-justify order-2'>
                         <p className='font-semibold text-2xl mb-4 '>What is the purpose of jwt and how does it work</p>
                         JWT is mainly used for authorization purposes between client and server
                         When the client login with a username and password, the server creates a token for the client. Client stores the token on local storage or browser cookies.
                         After that, when a client makes a request, a copy of the token is sent to the server for authorization.The server verifies the JWT token and send response to the client if the token is correct.
-                    </p>
+                    </div>
                     <div className='basis-[50%] flex items-center'>
                         <img src={four} alt="" className='w-[600px] mx-auto block ' />
                     </div>

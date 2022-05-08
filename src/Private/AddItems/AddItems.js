@@ -3,6 +3,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
+import Title from '../../Shared/Title/Title';
 
 const AddItems = () => {
     const [user] = useAuthState(auth);
@@ -32,6 +33,7 @@ const AddItems = () => {
 
     return (
         <>
+            <Title title="Add Items"> </Title>
             <div>
                 <div className='md:w-1/4 mx-auto py-12 px-4'>
                     <div className='text-center'>

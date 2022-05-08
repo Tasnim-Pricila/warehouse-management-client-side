@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useSpring, animated } from 'react-spring'
+import Title from '../../Shared/Title/Title';
 
 const ManageInventory = () => {
 
@@ -71,6 +72,7 @@ const ManageInventory = () => {
 
     return (
         <>
+            <Title title='Manage Inventory'></Title>
             {
                 showModal &&
                 <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-0">
@@ -102,7 +104,7 @@ const ManageInventory = () => {
                     </div>
                 </div>
             }
-            <div className='md:px-12 px-4'>
+            <div className='md:px-20 px-4'>
                 <animated.div className='flex justify-end mt-4' style={props}>
                     <Link to='/addItems'>
                         <button className='border-4 py-2 px-4 border-blue-400 text-center cursor-pointer font-semibold tracking-wider hover:bg-blue-400 hover:text-white hover:duration-500 text-sm'> Add New Cars </button>

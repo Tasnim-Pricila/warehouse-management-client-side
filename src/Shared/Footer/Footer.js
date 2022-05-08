@@ -1,27 +1,47 @@
 import { faFacebookF, faInstagram, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { faAngleRight, faEnvelope, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faAngleRight, faArrowUp, faEnvelope, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
     const myDate = new Date();
     const year = myDate.getFullYear();
-    // console.log(year);
+
+    // SCroll to top 
+    const [goTopBtn, setGoTopBtn] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 400) {
+                setGoTopBtn(true);
+            } else {
+                setGoTopBtn(false);
+            }
+        });
+    }, []);
+    
+    const goToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    };
+
     return (
         <>
             <div className='grid md:grid-cols-4 grid-cols-1 bg-[#202424] md:px-20 py-20 text-[#7a8395] px-8 gap-8 max-w-full overflow-hidden'>
                 <div>
                     <p className='text-xl text-orange-600 uppercase '>Vintage Exotic Cars</p>
-                    <p className='text-sm py-8'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste dolorum facere dolores facilis autem, numquam neque nisi et quod suscipit unde, maiores excepturi soluta iure, tempora sed molestias ad esse.</p>
+                    <p className='text-sm py-8'>Vintage Exotic is a leading two-sided digital automotive dealership that connects car shoppers with sellers. The company empowers shoppers with the data, resources and digital tools needed to make informed buying decisions and seamlessly connect with automotive retailers.</p>
                     <div className='flex flex-col gap-4'>
                         <div className='flex'>
                             <FontAwesomeIcon icon={faLocationDot} className='pr-2 pt-1'></FontAwesomeIcon>
-                            <p>3015 Grand Ave, Coconut Grove, Merrick Way, FL 12345</p>
+                            <p>Jam JAm Tower # 92 JashimUddin Road # Uttara # Dhaka-1230 # Bangladesh</p>
                         </div>
                         <div className='flex'>
                             <FontAwesomeIcon icon={faEnvelope} className='pr-2 pt-1'></FontAwesomeIcon>
-                            <p>info@wheels-control.com</p>
+                            <p>info@vintage-exotic.com</p>
                         </div>
                         <div className='flex'>
                             <FontAwesomeIcon icon={faPhone} className='pr-2 pt-1'></FontAwesomeIcon>
@@ -63,8 +83,9 @@ const Footer = () => {
                 </div>
             </div>
             {/* Footer -2  */}
+
             <div className='flex md:flex-row flex-col justify-between items-center bg-[#202424] md:px-20 py-8 text-[#7a8395] border-t-[1px] border-gray-600 text-center md:text-left overflow-hidden '>
-                <p className='text-center px-4'>&copy; {year} Vinatge Exotics Made with <span className='text-orange-600 max-w-full'> &#10084;</span>	 by <span className='text-white'>Pricila</span> </p>
+                <p className='text-center px-4'>&copy; {year} Vinatge Exotics Made with <span className='text-orange-600 max-w-full'> &#10084;</span> by <span className='text-white'>Pricila</span> </p>
 
                 <div className='flex md:flex-row gap-6 items-center mt-4 md:mt-0 flex-col'>
                     <p>Follow Us On </p>
@@ -75,6 +96,13 @@ const Footer = () => {
                         <FontAwesomeIcon icon={faYoutube} className='cursor-pointer hover:text-orange-400 hover:duration-500'></FontAwesomeIcon>
                     </span>
                 </div>
+                { goTopBtn &&
+                    <button onClick={goToTop} className='hidden md:block'>
+                    <FontAwesomeIcon icon={faArrowUp} className='text-white bg-orange-400 py-4 px-6 text-center right-4
+                     bottom-32 fixed'></FontAwesomeIcon>
+                </button>
+                }
+                
             </div>
         </>
     );

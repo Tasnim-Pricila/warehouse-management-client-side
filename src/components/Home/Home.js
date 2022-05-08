@@ -7,9 +7,8 @@ import Cars from '../Cars/Cars';
 import { Link } from 'react-router-dom';
 import Loading from '../Loading/Loading';
 import useCars from '../../CustomHook/useCars';
-import AOS from 'aos';
-import 'aos/dist/aos.css'; // You can also use <link> for styles
-AOS.init();
+import Title from '../../Shared/Title/Title';
+
 
 const Home = () => {
     const settings = {
@@ -53,13 +52,14 @@ const Home = () => {
     
     return loading ? ( <Loading/> ) : (
         <>
+            <Title title='Home'></Title>
             {/* Banner Section  */}
             <Slider {...settings} className='max-w-full overflow-hidden'>
                 {
                     carsBanner.map ((banner, index) =>
                         <div key={index}>
                             <div style={{ backgroundImage: `url('${banner.image}')` }} className='bg-cover h-[95vh] bg-no-repeat bg-blend-overlay md:bg-[#0000003f] bg-[#00000063] bg-center object-cover'>
-                                <div data-aos="fade-right" data-aos-offset="300"data-aos-easing="ease-in-sine" data-aos-duration="1000" data-aos-delay="80" className='text-white md:px-12 flex flex-col justify-center h-full bottom-4 px-2'>
+                                <div data-aos="fade-right" data-aos-offset="300"data-aos-easing="ease-in-sine" data-aos-duration="1000" data-aos-delay="80" className='text-white md:px-20 flex flex-col justify-center h-full bottom-4 px-2'>
                                     <p className='font-bold md:text-3xl md:pl-2'>{banner.smallTitle}</p>
                                     <h1 className='md:text-9xl text-5xl'>{banner.title}</h1>
                                     <h2 className='font-semibold pt-8'> 
@@ -80,23 +80,23 @@ const Home = () => {
 
             {/* Looking For  */}
             <section className='bg-[#E5EAED] max-w-full overflow-hidden'>
-                <div data-aos="zoom-in" data-aos-offset="300"data-aos-easing="ease-in-sine" data-aos-duration="600" data-aos-delay="50" className='text-center'>
-                    <p className='md:text-3xl text-2xl pt-8'>
+                <div data-aos="zoom-in" className='text-center'>
+                    <p className='md:text-3xl text-2xl pt-12'>
                         What are you looking for?
                     </p>
                     <p className='text-base mt-4 text-slate-500 car-deals'>Best Car Deals</p>
                 </div>
-                <div className='flex md:flex-row flex-col md:px-20 md:gap-12 text-center mt-8'>
-                    <div data-aos="fade-right" data-aos-offset="300"data-aos-easing="ease-in-sine" data-aos-duration="600" data-aos-delay="50" className='p-12 border-r-[1px]'>
+                <div className='grid md:grid-cols-3 grid-cols-1 md:px-20 md:gap-12 text-center mt-8'>
+                    <div data-aos="fade-right" data-aos-offset="300" data-aos-easing = "ease-in-sine" data-aos-duration="600" data-aos-delay="50" className='p-12 border-r-[1px]'>
                         <div>
                             <p className='bg-orange-300 rounded-full w-[50px] h-[45px] text-center font-[900] p-2 text-white text-2xl relative left-[55%]
                             '>$</p>
                             <FontAwesomeIcon icon={faCarSide} className='fa-3x '></FontAwesomeIcon>
                         </div>
                         <p className='my-4'>Car Sale</p>
-                        <p className='text-[#74787B]'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, unde!</p>
+                        <p className='text-[#74787B]'>Standardize the communication process and boost new and used car sales with these 16 most effective companies.</p>
                     </div>
-                    <div data-aos="zoom-in" data-aos-offset="300"data-aos-easing="ease-in-sine" data-aos-duration="600" data-aos-delay="50" className='p-12 border-r-[1px]'>
+                    <div data-aos="zoom-in" data-aos-offset="300" data-aos-easing = "ease-in-sine" data-aos-duration="600" data-aos-delay="50" className='p-12 border-r-[1px]'>
                         <div>
                             <p className='bg-amber-500 rounded-full w-[50px] h-[45px] text-center font-[900] p-2 text-white text-2xl relative left-[55%]
                             '><FontAwesomeIcon icon={faKey}></FontAwesomeIcon></p>
@@ -104,9 +104,9 @@ const Home = () => {
 
                         </div>
                         <p className='my-4'>Car Buy</p>
-                        <p className='text-[#74787B]'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, unde!</p>
+                        <p className='text-[#74787B]'>Standardize the communication process and boost new and used car sales with these 16 most effective companies.</p>
                     </div>
-                    <div data-aos="fade-left" data-aos-offset="300"data-aos-easing="ease-in-sine" data-aos-duration="600" data-aos-delay="50" className='p-12'>
+                    <div data-aos="fade-left" data-aos-offset="300" data-aos-easing= "ease-in-sine" data-aos-duration="600" data-aos-delay="50" className='p-12'>
                         <div>
                             <p className='bg-emerald-500 rounded-full w-[50px] h-[45px] text-center font-[900] p-2 text-white text-2xl relative left-[55%]
                             '>R</p>
@@ -114,7 +114,7 @@ const Home = () => {
 
                         </div>
                         <p className='my-4'>Car Rent</p>
-                        <p className='text-[#74787B]'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, unde!</p>
+                        <p className='text-[#74787B]'>Book a rental car from Extension Airport and start your adventure as soon as you land.</p>
                     </div>
 
                 </div>
@@ -128,7 +128,7 @@ const Home = () => {
                     </p>
                     <p className='text-base mt-4 text-slate-500 car-deals'>Best Car Deals</p>
                 </div>
-                <div className='grid md:grid-cols-3 grid-cols-1 gap-8 mt-16 md:px-12 px-2' >
+                <div className='grid md:grid-cols-3 grid-cols-1 gap-8 mt-16 md:px-20 px-2' >
 
                     {
                         cars.slice(0, 6).map(car =>
@@ -154,7 +154,7 @@ const Home = () => {
                         <p className='text-2xl text-orange-400 uppercase tracking-wider'>Vintage Exotic Cars</p>
                         <p className='md:text-5xl text-4xl font-extrabold pt-8'>EXCELLENT
                             CAR DEALERSHIP</p>
-                        <p className='py-10 text-justify'>Corify is a leading two-sided digital automotive dealership that connects car shoppers with sellers. Launched in 1998 and headquartered in Chicago, the company empowers shoppers with the data, resources and digital tools needed to make informed buying decisions and seamlessly connect with automotive retailers.</p>
+                        <p className='py-10 text-justify'>Vintage Exotic is a leading two-sided digital automotive dealership that connects car shoppers with sellers. Launched in 1998 and headquartered in Bangladesh, the company empowers shoppers with the data, resources and digital tools needed to make informed buying decisions and seamlessly connect with automotive retailers.</p>
                         <p className='signature text-4xl'> Pricila</p>
                         <p className='py-2 text-orange-400'>Tasnim Pricila</p>
                         <p className='text-sm'>Director of Vintage Exotic

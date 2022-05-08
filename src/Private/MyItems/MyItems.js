@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loading from '../../components/Loading/Loading';
 import auth from '../../firebase.init';
+import Title from '../../Shared/Title/Title';
 
 const MyItems = () => {
 
@@ -71,6 +72,7 @@ const MyItems = () => {
 
     return loading ? ( <Loading/> ) : (
         <>
+            <Title title="My Items"> </Title>
             {
                 showModal &&  
                 <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-0">
@@ -103,7 +105,7 @@ const MyItems = () => {
                 </div>
             }
 
-            <div className='md:px-12 px-2 mb-12 min-h-[95vh]'>
+            <div className='md:px-20 px-2 mb-12 min-h-[95vh]'>
                 <div className=' my-12'>
                     <p className='text-3xl text-center'> My Items</p>
                 </div>

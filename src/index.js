@@ -6,15 +6,19 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import { HelmetProvider } from 'react-helmet-async';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
+  <HelmetProvider>
+      <BrowserRouter>
       <React.StrictMode>
         <App />
     </React.StrictMode>
   </BrowserRouter>
+  </HelmetProvider>
+  
   
 );
 

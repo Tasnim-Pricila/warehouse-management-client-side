@@ -15,6 +15,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import Blogs from './components/Blogs/Blogs';
 import Contact from './components/Contact/Contact';
+import AOS from 'aos';
+AOS.init();
 
 function App() {
   return (

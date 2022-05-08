@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loading from '../../components/Loading/Loading';
 import useCars from '../../CustomHook/useCars';
+import Title from '../../Shared/Title/Title';
 
 const SingleItem = () => {
 
@@ -85,7 +86,9 @@ const SingleItem = () => {
     }
 
     return loading ? (<Loading />) : (
+        
         <div className='my-12'>
+            <Title title={`${name}`}> </Title>
             <div className='grid md:grid-cols-2 md:px-20 px-8 gap-12 mb-6'>
                 <div>
                     <img src={img} alt="" className='rounded-lg w-[600px] h-auto' />

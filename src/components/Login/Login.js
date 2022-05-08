@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import Loading from '../Loading/Loading';
 import useToken from '../../CustomHook/useToken';
 import loginbg from '../../images/loginbg.jpg';
+import Title from '../../Shared/Title/Title';
 
 const Login = () => {
 
@@ -103,6 +104,7 @@ const Login = () => {
 
     return (
         <>
+            <Title title='Login'></Title>
             <div className='flex items-center justify-center text-white bg-cover min-h-[95vh] bg-no-repeat bg-blend-overlay bg-[#0000007c] bg-center' 
             style={{ backgroundImage: `url('${loginbg}')` }}>
                 <div className='md:w-1/4 px-4'>

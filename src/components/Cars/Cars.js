@@ -14,7 +14,8 @@ const Cars = ({ car }) => {
     return (
         <div>
             <div className='border p-8 rounded-3xl shadow-md'>
-                <img src={img} alt="" className='border rounded-3xl md:h-[300px] mx-auto hover:scale-75 hover:duration-500'   />
+                <img src={img} alt="" className='border rounded-3xl md:h-[300px] mx-auto hover:scale-75 hover:duration-500'
+                />
                 <p className='text-2xl mt-4 '>{name}</p>
                 <p className=' mt-2'>
                     <FontAwesomeIcon icon={faUserCircle} className='text-slate-500'></FontAwesomeIcon>
