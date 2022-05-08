@@ -1,3 +1,5 @@
+import { faUserAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
@@ -35,6 +37,8 @@ const AddItems = () => {
         <>
             <Title title="Add Items"> </Title>
             <div>
+            <p className='text-right px-20 py-2 font-semibold'> <FontAwesomeIcon icon={faUserAlt} className='text-blue-600'></FontAwesomeIcon> Welcome 
+            <span className='text-blue-700'> {user?.displayName}</span> </p>
                 <div className='md:w-1/4 mx-auto py-12 px-4'>
                     <div className='text-center'>
                         <p className='text-4xl uppercase text-orange-400'>Add New Cars</p>

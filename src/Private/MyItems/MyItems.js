@@ -1,10 +1,10 @@
-import { faEdit, faTrashAlt, faX } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt, faUserAlt, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loading from '../../components/Loading/Loading';
 import auth from '../../firebase.init';
@@ -104,7 +104,8 @@ const MyItems = () => {
                     </div>
                 </div>
             }
-
+            <p className='text-right px-20 py-2 font-semibold'> <FontAwesomeIcon icon={faUserAlt} className='text-blue-600'></FontAwesomeIcon> Welcome 
+            <span className='text-blue-700'> {user?.displayName}</span> </p>
             <div className='md:px-20 px-2 mb-12 min-h-[95vh]'>
                 <div className=' my-12'>
                     <p className='text-3xl text-center '> My Items</p>

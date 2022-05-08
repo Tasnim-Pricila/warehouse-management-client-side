@@ -8,7 +8,7 @@ import contact from '../../images/contact.jpg'
 const Contact = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = (data) => {
-        console.log(data);
+        // console.log(data);
         reset();
     }
     return (

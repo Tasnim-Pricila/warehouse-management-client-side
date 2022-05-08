@@ -1,7 +1,7 @@
 import { faAt, faEye, faEyeSlash, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
-import { useCreateUserWithEmailAndPassword, useSendEmailVerification } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -30,27 +30,32 @@ const Signup = () => {
     // Create User 
     const [createUserWithEmailAndPassword, emailUser, emailLoading, emailError] = useCreateUserWithEmailAndPassword(auth);
 
+    // Update USer Info 
+    const [updateProfile, updating] = useUpdateProfile(auth);
+
     // Send Email Verification 
     const [sendEmailVerification, sending] = useSendEmailVerification(auth);
     const [myError, setMyError] = useState('');
-    // React Hook Form 
 
+    // React Hook Form 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = async (data, e) => {
         const userInfo = data;
-        const { email, password, cpassword } = userInfo;
+        const { name, email, password, cpassword } = userInfo;
         if (password === cpassword) {
             await createUserWithEmailAndPassword(email, password);
+            await updateProfile({displayName: name});
             await sendEmailVerification();
             setMyError('')      
         }
         else if (password !== cpassword) {
             setMyError('Password Does not match')
-        }
-       
+        }  
     }
+    
     const [token] = useToken(emailUser);
     const navigate = useNavigate();
+
     useEffect(() => {
         if (token) {
             toast.success('Your Registration is Successful!!! ', {
@@ -82,7 +87,7 @@ const Signup = () => {
         }
     }, [emailError]);
 
-    if (emailLoading || sending) {
+    if (emailLoading || sending || updating) {
         return <Loading></Loading>
     }
 

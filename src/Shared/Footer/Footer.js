@@ -40,8 +40,8 @@ const Footer = () => {
                             <p>Jam JAm Tower # 92 JashimUddin Road # Uttara # Dhaka-1230 # Bangladesh</p>
                         </div>
                         <div className='flex'>
-                            <FontAwesomeIcon icon={faEnvelope} className='pr-2 pt-1'></FontAwesomeIcon>
-                            <p>info@vintage-exotic.com</p>
+                            <FontAwesomeIcon icon={faEnvelope} className='pr-2 pt-1 '></FontAwesomeIcon>
+                            <p className='hover:text-orange-400 hover: duration-500 cursor-pointer'>info@vintage-exotic.com</p>
                         </div>
                         <div className='flex'>
                             <FontAwesomeIcon icon={faPhone} className='pr-2 pt-1'></FontAwesomeIcon>
@@ -53,22 +53,23 @@ const Footer = () => {
                 <div className='md:justify-self-center'>
                     <p className='text-xl text-white uppercase pb-8'>Links</p>
                     <div className='flex flex-col gap-4'>
-                        <Link to='/'>Home</Link>
-                        <Link to='/manageInventory'>Manage Inventories</Link>
-                        <Link to='/addItems'>Add Items</Link>
-                        <Link to='/blogs'>Blogs</Link>
-                        <Link to='/contact'>Contact</Link>
+                        <Link to='/' className='hover:text-orange-400 hover: duration-500'>Home</Link>
+                        <Link to='/manageInventory' className='hover:text-orange-400 hover: duration-500'>Manage Inventories</Link>
+                        <Link to='/addItems' className='hover:text-orange-400 hover: duration-500'>Add Items</Link>
+                        <Link to='/myItems' className='hover:text-orange-400 hover: duration-500'>My Items</Link>
+                        <Link to='/blogs' className='hover:text-orange-400 hover: duration-500'>Blogs</Link>
+                        <Link to='/contact' className='hover:text-orange-400 hover: duration-500'>Contact</Link>
                     </div>
                 </div>
                 <div>
                     <p className='text-xl text-white uppercase pb-8'>Help Center</p>
                     <div className='flex flex-col gap-4'>
-                        <a href="http://localhost:3000">FAQs</a>
-                        <a href="http://localhost:3000">Pricing &#38; Plan</a>
-                        <a href="http://localhost:3000">Privacy Policy</a>
-                        <a href="http://localhost:3000">Terms &#38; Conditions</a>
-                        <a href="http://localhost:3000">Affiliate Program</a>
-                        <a href="http://localhost:3000">Helps</a>
+                        <a href="http://localhost:3000" className='hover:text-orange-400 hover: duration-500'>FAQs</a>
+                        <a href="http://localhost:3000" className='hover:text-orange-400 hover: duration-500'>Pricing &#38; Plan</a>
+                        <a href="http://localhost:3000" className='hover:text-orange-400 hover: duration-500'>Privacy Policy</a>
+                        <a href="http://localhost:3000" className='hover:text-orange-400 hover: duration-500'>Terms &#38; Conditions</a>
+                        <a href="http://localhost:3000" className='hover:text-orange-400 hover: duration-500'>Affiliate Program</a>
+                        <a href="http://localhost:3000" className='hover:text-orange-400 hover: duration-500'>Helps</a>
                     </div>
                 </div>
                 <div>

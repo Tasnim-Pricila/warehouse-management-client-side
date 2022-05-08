@@ -1,10 +1,12 @@
-import { faTrashAlt, faX } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faUser, faUserAlt, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useSpring, animated } from 'react-spring'
 import Title from '../../Shared/Title/Title';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const ManageInventory = () => {
 
@@ -17,6 +19,7 @@ const ManageInventory = () => {
     const [showModal, setShowModal] = useState(false);
     const [deleteId, setDeleteId] = useState('');
     const [flip, set] = useState(false)
+    const [user] = useAuthState(auth);
 
     useEffect(() => {
         fetch(`https://aqueous-castle-23804.herokuapp.com/cars?activePage=${activePage}&limit=${limit}`)
@@ -105,6 +108,9 @@ const ManageInventory = () => {
                     </div>
                 </div>
             }
+            <p className='text-right px-20 py-2 font-semibold'> <FontAwesomeIcon icon={faUserAlt} className='text-blue-600'></FontAwesomeIcon> Welcome 
+            <span className='text-blue-700'> {user?.displayName}</span> </p>
+
             <div className='md:px-20 px-4'>
                 <animated.div className='flex justify-end mt-4' style={props}>
                     <Link to='/addItems'>
