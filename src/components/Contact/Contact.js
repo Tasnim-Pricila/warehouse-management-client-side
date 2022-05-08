@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import Title from '../../Shared/Title/Title';
-import './Contact.css';
+import contact from '../../images/contact.jpg'
 
 const Contact = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -14,11 +14,10 @@ const Contact = () => {
     return (
         <>
             <Title title="Contact"> </Title>
-            <div className='contact-background'></div>
-            <div data-aos="flip-down" data-aos-offset="300"data-aos-easing="ease-in-sine" data-aos-duration="1000" data-aos-delay="80" className='md:w-2/3 md:mx-auto border py-12 px-8 shadow-2xl contact mx-4'>
+            <div className='bg-cover h-[50vh] bg-no-repeat' style={{ backgroundImage: `url('${contact}')`}}></div>
+            <div data-aos="flip-down" data-aos-offset="300"data-aos-easing="ease-in-sine" data-aos-duration="1000" data-aos-delay="80" className='md:w-2/3 md:mx-auto border py-12 px-8 shadow-2xl contact mx-4 -mt-[150px] mb-[50px] bg-[#f5f5f5]'>
                 <p className='text-3xl mb-12 text-amber-700'>Contact us for any further questions, possible projects and
                     business partnerships</p>
-
                 <div className='grid md:grid-cols-3 grid-cols-1 gap-12'>
                     <div>
                         <div className='flex justify-between items-center text-slate-600 py-2'>

@@ -101,7 +101,7 @@ const Signup = () => {
                         {/* Name Field  */}
                         <div className='relative'>
                             <input placeholder='Name' type='text' {...register("name", { required: true, })}
-                                className='login block border-gray-300 w-full pl-10 py-2  
+                                className='bg-[#dddddd38] block border-gray-300 w-full pl-10 py-2  
                             rounded-full outline-none'/>
                             <FontAwesomeIcon icon={faUser} className='absolute top-3 left-4 text-slate-400'></FontAwesomeIcon>
                         </div>
@@ -111,7 +111,7 @@ const Signup = () => {
                         {/* Email Field  */}
                         <div className='relative'>
                             <input placeholder='Email'  {...register("email", { required: true, pattern: /\S+@\S+\.\S+/ })}
-                                className='login block border-gray-300 w-full pl-10 py-2  
+                                className='bg-[#dddddd38] block border-gray-300 w-full pl-10 py-2  
                             rounded-full outline-none mt-6'/>
                             <FontAwesomeIcon icon={faAt} className='absolute top-3 left-4 text-slate-400'></FontAwesomeIcon>
                         </div>
@@ -126,12 +126,12 @@ const Signup = () => {
                         <div className='relative'>
                             {eye ?
                                 <input placeholder='Password' type='password' {...register("password", { required: true, pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-]).{8,}/, minLength: 8 })}
-                                    className='login block border-gray-300 w-full pl-10 py-2 
+                                    className='bg-[#dddddd38] block border-gray-300 w-full pl-10 py-2 
                             rounded-full outline-none mt-6'/>
                                 :
 
                                 <input placeholder='Password' type='text' {...register("password", { required: true, pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-]).{8,}/, minLength: 8 })}
-                                    className='login block border-gray-300 w-full pl-10 py-2 
+                                    className='bg-[#dddddd38] block border-gray-300 w-full pl-10 py-2 
                             rounded-full outline-none mt-6'/>
                             }
                             <FontAwesomeIcon icon={faLock} className='absolute top-3 left-4 text-slate-400'></FontAwesomeIcon>
@@ -154,12 +154,12 @@ const Signup = () => {
                         <div className='relative'>
                             {eye1 ?
                                 <input placeholder='Confirm Password' type='password' {...register("cpassword", { required: true, })}
-                                    className='login block border-gray-300 w-full pl-10 py-2 
+                                    className='bg-[#dddddd38] block border-gray-300 w-full pl-10 py-2 
                             rounded-full outline-none mt-6'/>
                                 :
 
                                 <input placeholder='Confirm Password' type='text' {...register("cpassword", { required: true, })}
-                                    className='login block border-gray-300 w-full pl-10 py-2 
+                                    className='bg-[#dddddd38] block border-gray-300 w-full pl-10 py-2 
                             rounded-full outline-none mt-6'/>
                             }
                             <FontAwesomeIcon icon={faLock} className='absolute top-3 left-4 text-slate-400'></FontAwesomeIcon>

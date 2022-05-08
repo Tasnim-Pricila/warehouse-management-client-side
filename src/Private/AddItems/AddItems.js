@@ -38,10 +38,10 @@ const AddItems = () => {
                 <div className='md:w-1/4 mx-auto py-12 px-4'>
                     <div className='text-center'>
                         <p className='text-4xl uppercase text-orange-400'>Add New Cars</p>
-                        <p className='mt-4 mb-8 text-slate-700'>Welcome back! Submit your cars description specifications image etc...</p>
+                        <p className='mt-4 mb-8 text-slate-700 '>Welcome back! Submit your cars description specifications image etc...</p>
                     </div>
 
-                    <form onSubmit={handleSubmit(onSubmit)} className=' mx-auto'>
+                    <form onSubmit={handleSubmit(onSubmit)} className=' mx-auto mt-12'>
                         <input placeholder='Car Name' type='text' {...register("name", { required: true, })} className=' block border-2 border-slate-500 w-full 
                         pl-2 py-2 rounded-lg outline-none text-slate-600 '/>
                         <small className='text-red-500'>

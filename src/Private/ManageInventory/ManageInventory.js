@@ -74,6 +74,7 @@ const ManageInventory = () => {
         <>
             <Title title='Manage Inventory'></Title>
             {
+                // Dialogue Box
                 showModal &&
                 <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-0">
                     <div className="relative w-auto my-6 mx-auto max-w-3xl">
@@ -111,7 +112,7 @@ const ManageInventory = () => {
                     </Link>
                 </animated.div>
                 <div className='flex justify-center mt-4 mb-12 items-center'>
-                    <p className='md:text-3xl text-2xl text-center'> Manage Inventories</p>
+                    <p className='md:text-3xl text-2xl text-center  mb-8'> Manage Inventories</p>
                 </div>
 
                 {

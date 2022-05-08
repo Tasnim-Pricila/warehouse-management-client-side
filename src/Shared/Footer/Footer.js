@@ -85,7 +85,7 @@ const Footer = () => {
             {/* Footer -2  */}
 
             <div className='flex md:flex-row flex-col justify-between items-center bg-[#202424] md:px-20 py-8 text-[#7a8395] border-t-[1px] border-gray-600 text-center md:text-left overflow-hidden '>
-                <p className='text-center px-4'>&copy; {year} Vinatge Exotics Made with <span className='text-orange-600 max-w-full'> &#10084;</span> by <span className='text-white'>Pricila</span> </p>
+                <p className='text-center px-4'>&copy; {year} Vinatge Exotics Made with <span className='text-orange-600 max-w-full px-1'> &#10084;</span> by <span className='text-white'>Pricila</span> </p>
 
                 <div className='flex md:flex-row gap-6 items-center mt-4 md:mt-0 flex-col'>
                     <p>Follow Us On </p>
@@ -99,7 +99,7 @@ const Footer = () => {
                 { goTopBtn &&
                     <button onClick={goToTop} className='hidden md:block'>
                     <FontAwesomeIcon icon={faArrowUp} className='text-white bg-orange-400 py-4 px-6 text-center right-4
-                     bottom-32 fixed'></FontAwesomeIcon>
+                     bottom-24 fixed'></FontAwesomeIcon>
                 </button>
                 }
                 

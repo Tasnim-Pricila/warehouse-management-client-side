@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import Loading from '../Loading/Loading';
 import useCars from '../../CustomHook/useCars';
 import Title from '../../Shared/Title/Title';
+import black from '../../images/black.png'
 
 
 const Home = () => {
@@ -84,7 +85,7 @@ const Home = () => {
                     <p className='md:text-3xl text-2xl pt-12'>
                         What are you looking for?
                     </p>
-                    <p className='text-base mt-4 text-slate-500 car-deals'>Best Car Deals</p>
+                    <p className='text-base mt-4 text-slate-500 blue-line'>Best Car Deals</p>
                 </div>
                 <div className='grid md:grid-cols-3 grid-cols-1 md:px-20 md:gap-12 text-center mt-8'>
                     <div data-aos="fade-right" data-aos-offset="300" data-aos-easing = "ease-in-sine" data-aos-duration="600" data-aos-delay="50" className='p-12 border-r-[1px]'>
@@ -126,7 +127,7 @@ const Home = () => {
                     <p className='text-3xl'>
                         Featured Car Deals
                     </p>
-                    <p className='text-base mt-4 text-slate-500 car-deals'>Best Car Deals</p>
+                    <p className='text-base mt-4 text-slate-500 blue-line'>Best Car Deals</p>
                 </div>
                 <div className='grid md:grid-cols-3 grid-cols-1 gap-8 mt-16 md:px-20 px-2' >
 
@@ -147,7 +148,7 @@ const Home = () => {
             </section>
 
             {/* Excellent Dealership  */}
-            <section  className='delearship md:px-20 py-28 bg-center bg-blend-overlay 
+            <section style={{ backgroundImage: `url('${black}')`}} className='bg-cover h-[150vh] bg-no-repeat md:px-20 py-28 bg-center bg-blend-overlay 
             bg-[#00000094] md:bg-[#00000000] max-w-full overflow-hidden'>
                 <div className='flex md:flex-row flex-col' data-aos= "zoom-in-up" data-aos-easing= "ease-out-cubic" data-aos-duration="2000" data-aos-delay="80">
                     <div className='text-white md:pr-48 basis-1/2 px-4 md:px-0'>

@@ -15,6 +15,13 @@ const Header = () => {
         setMenuIcon(false)
     }
     
+    const handleClick = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+        setMenuIcon(false);
+    }
     return (
         <>
             <div className='flex justify-between items-center md:px-20 px-2 py-4 bg-[#1B1E1E] text-white sticky top-0 z-50'>
@@ -32,23 +39,22 @@ const Header = () => {
                 <div className={`flex md:flex-row md:gap-8 flex-col md:static duration-1000 absolute bg-[#1B1E1E] md:bg-transparent text-center uppercase items-center
                  ${menuIcon ? 'right-0 left-0 top-14 py-4 gap-2' : 'right-0 left-0 top-[-220px]'} `} id='hide'
                  >
-                    <NavLink to='/' className={({ isActive }) => (isActive ? "text-orange-600" : "")} onClick={() => setMenuIcon(false)}> Home </NavLink>
+                    <NavLink to='/' className={({ isActive }) => (isActive ? "text-orange-600" : "")} onClick={handleClick}> Home </NavLink>
 
                     {user &&
                         <>
-                            <NavLink to='/manageInventory' className={({ isActive }) => (isActive ? "text-orange-600" : "")} onClick={() => setMenuIcon(false)} > Manage Inventories 
+                            <NavLink to='/manageInventory' className={({ isActive }) => (isActive ? "text-orange-600" : "")} onClick={handleClick} > Manage Inventories 
                             </NavLink>
-                            <NavLink to='/addItems' className={({ isActive }) => (isActive ? "text-orange-600" : "")} onClick={() => setMenuIcon(false)} > Add Items </NavLink>
-                            <NavLink to='/myItems' className={({ isActive }) => (isActive ? "text-orange-600" : "")} onClick={() => setMenuIcon(false)} > My Items </NavLink>
+                            <NavLink to='/addItems' className={({ isActive }) => (isActive ? "text-orange-600" : "")} onClick={handleClick} > Add Items </NavLink>
+                            <NavLink to='/myItems' className={({ isActive }) => (isActive ? "text-orange-600" : "")} onClick={handleClick} > My Items </NavLink>
                         </>
                     }
 
-                    <NavLink to='/blogs' className={({ isActive }) => (isActive ? "text-orange-600" : "")} onClick={() => setMenuIcon(false)} > Blogs </NavLink>
-                    <NavLink to='/contact' className={({ isActive }) => (isActive ? "text-orange-600" : "")} onClick={() => setMenuIcon(false)}> Contact </NavLink>
-
+                    <NavLink to='/blogs' className={({ isActive }) => (isActive ? "text-orange-600" : "")} onClick={handleClick} > Blogs </NavLink>
+                    <NavLink to='/contact' className={({ isActive }) => (isActive ? "text-orange-600" : "")} onClick={handleClick}> Contact </NavLink>
                     <div>
                     {!user &&
-                        <NavLink to='/login' className={'uppercase'} onClick={() => setMenuIcon(false)}>
+                        <NavLink to='/login' className={'uppercase'} onClick={handleClick}>
                             <FontAwesomeIcon icon={faUser} className='pr-2'></FontAwesomeIcon> Login
                         </NavLink>
                     }

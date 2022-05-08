@@ -1,4 +1,4 @@
-.car-deals::after{
+.blue-line::after {
     background-color: #09a0f7;
     content: '';
     position: absolute;
@@ -9,15 +9,8 @@
     right: 0;
     margin: 20px auto;
 }
-.delearship{
-    background-image: url('../../images/black.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 150vh;
-    ;
-    
-}
-.signature{
+
+.signature {
     font-family: 'Lavishly Yours', cursive;
     letter-spacing: 3px;
 }
