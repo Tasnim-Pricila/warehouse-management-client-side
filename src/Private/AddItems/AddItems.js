@@ -14,7 +14,7 @@ const AddItems = () => {
     // React Hook Form 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = (data) => {
-        fetch('https://aqueous-castle-23804.herokuapp.com/cars', {
+        fetch('https://warehouse-management-api.onrender.com/cars', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -22,7 +22,7 @@ const ManageInventory = () => {
     const [user] = useAuthState(auth);
 
     useEffect(() => {
-        fetch(`https://aqueous-castle-23804.herokuapp.com/cars?activePage=${activePage}&limit=${limit}`)
+        fetch(`https://warehouse-management-api.onrender.com/cars?activePage=${activePage}&limit=${limit}`)
             .then(res => res.json())
             .then(data => {
                 setCars(data)
@@ -31,7 +31,7 @@ const ManageInventory = () => {
     }, [activePage, limit])
 
     useEffect(() => {
-        fetch('https://aqueous-castle-23804.herokuapp.com/totalCar')
+        fetch('https://warehouse-management-api.onrender.com/totalCar')
             .then(res => res.json())
             .then(data => {
                 setTotalCar(data.result);
@@ -43,7 +43,7 @@ const ManageInventory = () => {
     }, [limit])
 
     const handleDelete = (id) => {
-        fetch(`https://aqueous-castle-23804.herokuapp.com/cars/${id}`, {
+        fetch(`https://warehouse-management-api.onrender.com/cars/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

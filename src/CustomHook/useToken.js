@@ -6,7 +6,7 @@ const useToken = (user) => {
     const email = user?.user?.email;
     useEffect(() => {
         const getToken = async () => {
-            const url = 'https://aqueous-castle-23804.herokuapp.com/login';
+            const url = 'https://warehouse-management-api.onrender.com/login';
             if (email) {
                 const { data } = await axios.post(url, { email })
                 setToken(data.accessToken);

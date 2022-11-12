@@ -49,7 +49,7 @@ const Home = () => {
         },
     ]
 
-    const [cars, setCars, loading] = useCars('https://aqueous-castle-23804.herokuapp.com/cars');
+    const [cars, setCars, loading] = useCars('https://warehouse-management-api.onrender.com/cars');
     
     return loading ? ( <Loading/> ) : (
         <>
