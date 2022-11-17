@@ -32,7 +32,7 @@ const SingleItem = () => {
 
         // Update data
         fetch(`https://warehouse-management-api.onrender.com/cars/${id}`, {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
             },
@@ -40,7 +40,7 @@ const SingleItem = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.modifiedCount > 0) {
+                if (data.data.modifiedCount > 0) {
                     toast.success('Delivered Successfully !!! ', {
                         theme: 'colored',
                         delay: 0,
@@ -66,7 +66,7 @@ const SingleItem = () => {
 
         // Update data
         fetch(`https://warehouse-management-api.onrender.com/cars/${id}`, {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
             },
@@ -74,7 +74,7 @@ const SingleItem = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.modifiedCount > 0) {
+                if (data.data.modifiedCount > 0) {
                     toast.success('Quantity Updated Successfully !!! ', {
                         theme: 'colored',
                         delay: 0,

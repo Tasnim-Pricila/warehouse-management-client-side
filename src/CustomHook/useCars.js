@@ -9,7 +9,7 @@ const useCars = (url) => {
         fetch(url)
             .then(res =>res.json())
             .then(data => {
-                setCars(data)
+                setCars(data.data)
                 setLoading(!loading);
             })
     },[])

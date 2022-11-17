@@ -25,17 +25,17 @@ const ManageInventory = () => {
         fetch(`https://warehouse-management-api.onrender.com/cars?activePage=${activePage}&limit=${limit}`)
             .then(res => res.json())
             .then(data => {
-                setCars(data)
+                setCars(data.data)
                 setLoading(!loading);
             })
     }, [activePage, limit])
 
     useEffect(() => {
-        fetch('https://warehouse-management-api.onrender.com/totalCar')
+        fetch('https://warehouse-management-api.onrender.com/cars/totalCar')
             .then(res => res.json())
             .then(data => {
-                setTotalCar(data.result);
-                const totalCar = data.result;
+                setTotalCar(data.data);
+                const totalCar = data.data;
                 const page = Math.ceil(totalCar / limit);
                 setTotalPage(page);
 
@@ -48,7 +48,7 @@ const ManageInventory = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.deletedCount > 0) {
+                if (data.data.deletedCount > 0) {
                     toast.success('Item Deleted Successfully', {
                         theme: 'colored',
                         delay: 0,

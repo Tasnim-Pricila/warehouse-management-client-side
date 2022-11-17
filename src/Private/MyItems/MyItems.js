@@ -23,14 +23,14 @@ const MyItems = () => {
 
     useEffect(() => {
         const getCars = async () => {
-            const url = `https://warehouse-management-api.onrender.com/cars?email=${email}`;
+            const url = `https://warehouse-management-api.onrender.com/cars/user/${email}`;
             try {
                 const { data } = await axios.get(url, {
                     headers: {
                         authorization: `Bearer ${localStorage.getItem('accessToken')}`
                     }
                 });
-                setCars(data);
+                setCars(data.data);
                 setLoading(!loading);
             }
             catch (error) {
@@ -52,7 +52,7 @@ const MyItems = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.deletedCount > 0) {
+                if (data.data.deletedCount > 0) {
                     toast.success('Item Deleted Successfully', {
                         theme: 'colored',
                         delay: 0,

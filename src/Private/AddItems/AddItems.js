@@ -23,7 +23,7 @@ const AddItems = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.acknowledged === true) {
+                if (data.data.acknowledged === true) {
                     toast.success('New Item Added Successfully', {
                         theme: 'colored',
                         delay: 0,
