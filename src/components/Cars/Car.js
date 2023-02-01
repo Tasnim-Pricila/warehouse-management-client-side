@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Cars = ({ car }) => {
+const Car = ({ car }) => {
     const { _id, name, description, price, quantity, vendor, img } = car;
 
     const navigate = useNavigate();
@@ -41,4 +41,4 @@ const Cars = ({ car }) => {
     );
 };
 
-export default Cars;
+export default Car;

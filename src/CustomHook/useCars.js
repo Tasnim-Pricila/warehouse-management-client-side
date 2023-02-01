@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-
 const useCars = (url) => {
     const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -12,7 +11,7 @@ const useCars = (url) => {
                 setCars(data.data)
                 setLoading(!loading);
             })
-    },[])
+    },[url])
     
     return [cars, setCars, loading, setLoading];
 };
