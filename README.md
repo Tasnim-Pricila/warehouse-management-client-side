@@ -1,16 +1,35 @@
 # [VINTAGE EXOTIC CARS](https://warehouse-management-54c43.web.app/)
+<h1 align='center'>
+    <a href='https://warehouse-management-54c43.web.app/' target='_blank'>
+        VINTAGE EXOTIC CARS
+    </a>
+</h1>
 
+<p align='center'>
+    <b> VINTAGE EXOTIC CARS is a warehouse management website of cars. </b>
+</p>
+
+<p align='center'>
+    <img src='./src/images/vintage.png'>
+</p>
+
+### Client Side Link : [https://github.com/Tasnim-Pricila/warehouse-management-client-side](https://github.com/Tasnim-Pricila/warehouse-management-client-side)
+### Backend Side Link : [https://github.com/Tasnim-Pricila/warehouse-management-server-side](https://github.com/Tasnim-Pricila/warehouse-management-server-side) 
 ## Website Live-Link : [https://warehouse-management-54c43.web.app/](https://warehouse-management-54c43.web.app/) 
 
 ## **Project Description**
 
-### **Technologies Used** :
+### **Tools and Technologies Used** :
 
 * HTML
-* Tailwind CSS
+* CSS
+* Tailwind
 * React JS
 * Node Js
+* Express Js
 * MongoDB
+* Firebase
+* Render
 
 ### **About Project** :
 
