@@ -115,7 +115,7 @@ const Login = () => {
                     <form onSubmit={handleSubmit(onSubmit)} className=' mx-auto '>
                         <div className='relative '>
                             <input placeholder='Email' type='email' name='email' {...register("email", { required: true })}
-                                className=' bg-[#dddddd38] block border-gray-300 w-full pl-10 py-2  
+                                className='bg-[#dddddd38] block border-gray-300 w-full pl-10 py-2  
                             rounded-full outline-none' onChange={handleEmailLogin} />
                             <FontAwesomeIcon icon={faAt} className='absolute top-3 left-4 text-slate-400'></FontAwesomeIcon>
                         </div>
@@ -130,7 +130,6 @@ const Login = () => {
                                     className='bg-[#dddddd38] block border-gray-300 w-full pl-10 py-2 
                             rounded-full outline-none mt-6'/>
                                 :
-
                                 <input placeholder='Password' type='text' {...register("password", { required: true })}
                                     className='bg-[#dddddd38] block border-gray-300 w-full pl-10 py-2 
                             rounded-full outline-none mt-6'/>
